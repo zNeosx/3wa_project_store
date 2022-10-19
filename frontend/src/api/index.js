@@ -3,6 +3,7 @@
 import { Axios } from "../config";
 
 // }
+const token = sessionStorage.getItem("token");
 
 export const authRequest = {
   register: (formData) => {
@@ -13,46 +14,39 @@ export const authRequest = {
   },
 };
 
-export const postsRequest = {
+export const foodsRequest = {
   getAll: () => {
-    return Axios.get("/post/getAll", {
+    return Axios.get("/foods/getAll", {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
-  },
-  getPostsUser: () => {
-    return Axios.get("/post/getPostsUser", {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
     });
   },
   getOne: (id) => {
-    return Axios.get(`post/getOne/${id}`, {
+    return Axios.get(`foods/getOne/${id}`, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
     });
   },
   addOne: (formData) => {
-    return Axios.post("/post/addOne", formData, {
+    return Axios.foods("/foods/addOne", formData, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
     });
   },
   deleteOne: (id) => {
-    return Axios.delete(`/post/deleteOne/${id}`, {
+    return Axios.delete(`/foods/deleteOne/${id}`, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
     });
   },
   updateOne: (id, formData) => {
-    return Axios.patch(`/post/updateOne/${id}`, formData, {
+    return Axios.patch(`/foods/updateOne/${id}`, formData, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
     });
   },

@@ -52,7 +52,7 @@ const Login = () => {
     authRequest
       .login(form)
       .then(({ data }) => {
-        localStorage.setItem("token", data.token);
+        sessionStorage.setItem("token", data.token);
         generateRandomAvatar();
         navigate("/");
       })
@@ -60,7 +60,7 @@ const Login = () => {
         console.log(data.message);
         toast.error(data.message, {
           margin: "60px",
-          position: "top-center",
+          position: "top-right",
           autoClose: 5000,
         });
       });

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { postsRequest } from "../api";
+import { foodsRequest } from "../api";
 import Avatar, { genConfig } from "react-nice-avatar";
 import { TiDeleteOutline } from "react-icons/ti";
 import { AiOutlineEdit } from "react-icons/ai";
@@ -20,21 +20,21 @@ const customStyles = {
 
 export default function Dashboard() {
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [posts, setPosts] = useState([]);
-  const [postToDelete, setPostToDelete] = useState(null);
+  const [foods, setFoods] = useState([]);
+  const [foodToDelete, setFoodToDelete] = useState(null);
 
   const config = genConfig(JSON.parse(localStorage.getItem("avatar") || "{}"));
 
-  const getPostsUser = () => {
-    postsRequest
-      .getPostsUser()
-      .then((res) => {
-        setPosts(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const getPostsUser = () => {
+  //   foodsRequest
+  //     .getPostsUser()
+  //     .then((res) => {
+  //       setPosts(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -42,62 +42,65 @@ export default function Dashboard() {
     window.location.href = "/";
   };
 
-  const deletePost = (id) => {
-    postsRequest
+  const deleteFood = (id) => {
+    foodsRequest
       .deleteOne(id)
       .then((res) => {
-        toast.success("Publication supprimée");
+        toast.success("Produit supprimé avec succès");
         window.location.reload();
       })
       .catch((err) => console.log(err));
   };
 
-  const updatePost = (id) => {
-    window.location.href = `update_post/${id}`;
-  };
+  // const updatePost = (id) => {
+  //   window.location.href = `update_post/${id}`;
+  // };
 
-  useEffect(() => {
-    getPostsUser();
-  }, []);
+  // useEffect(() => {
+  //   getPostsUser();
+  // }, []);
 
   return (
     <section id="dashboard" className="page-container">
       {/* <ToastContainer /> */}
       <h1>Dashboard</h1>
       <ToastContainer />
-      <h2>Mes publications</h2>
-      {posts?.map((post) => (
-        <div className="post-card" key={post._id}>
-          <div className="post-header">
-            <div className="post-header-user">
-              <Avatar className="post-header-avatar" {...config} />
-              <span className="post-header-username">
-                {post.userId.username}
+      <h2>Mes commandes</h2>
+      {foods?.map((food) => (
+        <div className="food-card" key={food._id}>
+          <div className="food-header">
+            <div className="food-header-user">
+              <Avatar className="food-header-avatar" {...config} />
+              <span className="food-header-username">
+                {food.userId.username}
               </span>
             </div>
-            <div className="post-header-btn">
+            <div className="food-header-btn">
               <button
                 className="btn btn-delete"
                 onClick={() => {
-                  setPostToDelete(post._id);
+                  setFoodToDelete(food._id);
                   setIsOpen(true);
                 }}
               >
-                <TiDeleteOutline className="post-icons" />
+                <TiDeleteOutline className="food-icons" />
                 Supprimer
               </button>
-              <button
+              {/* <button
                 className="btn btn-edit"
-                onClick={() => updatePost(post._id)}
+                onClick={() => updatefood(food._id)}
               >
-                <AiOutlineEdit className="post-icons" />
+                <AiOutlineEdit className="food-icons" />
                 Modifier
-              </button>
+              </button> */}
             </div>
           </div>
-          <h2>{post.title}</h2>
-          <p>{post.description}</p>
-          <span className="post-date">{post.createdAt}</span>
+          <h2>{food.name}</h2>
+          <span className="food-price">{food.price}</span>
+          <span className="food-quantity">
+            {food.quantity > 0 ? food.quantity : "Rupture de stock"}
+          </span>
+          <span className="food-date">{food.createdAt}</span>
         </div>
       ))}
       <button className="btn btn-logout" onClick={() => logout()}>
@@ -110,9 +113,9 @@ export default function Dashboard() {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <h2>Tu veux vraiment supprimer cette publication ?</h2>
+        <h2>Tu veux vraiment supprimer ce produit ?</h2>
         <div className="modal-btn">
-          <button className="btn" onClick={() => deletePost(postToDelete)}>
+          <button className="btn" onClick={() => deleteFood(foodToDelete)}>
             Oui
           </button>
           <button className="btn" onClick={() => setIsOpen(false)}>

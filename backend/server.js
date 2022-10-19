@@ -11,6 +11,7 @@ import { port, hostname, localClientURL, mongoUrl } from "./config/index.js";
 
 import authRouter from "./routes/auth.js";
 import postRouter from "./routes/posts.js";
+import foodRouter from "./routes/food.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -51,7 +52,8 @@ async function init() {
 
   app.use("/auth/", authRouter);
   app.use("/post/", postRouter);
-  // app.use("/images", express.static(path.join(__dirname, "images")));
+  app.use("/foods/", foodRouter);
+  app.use("/images", express.static(path.join(__dirname, "images")));
 }
 
 const server = http.createServer(app);

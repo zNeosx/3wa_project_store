@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import { PostCard } from "../components/PostCard";
-import { postsRequest } from "../api";
+import { FoodCard } from "../components/FoodCard";
+import { foodsRequest } from "../api";
 
 const Home = () => {
-  const [posts, setPosts] = useState([]);
+  const [foods, setFoods] = useState([]);
 
-  const getAllPosts = async () => {
-    postsRequest
+  const getAllFoods = async () => {
+    foodsRequest
       .getAll()
       .then((res) => {
-        setPosts(res.data);
+        setFoods(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -17,14 +17,17 @@ const Home = () => {
   };
 
   useEffect(() => {
-    getAllPosts();
+    getAllFoods();
   }, []);
+
   return (
-    <section id="home" className="page-container">
-      <h1>Homepage</h1>
-      {posts?.map((post) => (
-        <PostCard key={post._id} post={post} />
-      ))}
+    <section id="home">
+      <h2 className="menu-title page-container">Nos Burgers</h2>
+      <div className="foods-container page-container">
+        {foods?.map((food) => (
+          <FoodCard key={food._id} food={food} />
+        ))}
+      </div>
     </section>
   );
 };

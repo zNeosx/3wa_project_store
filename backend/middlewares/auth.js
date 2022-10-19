@@ -23,7 +23,7 @@ export const auth = {
       });
     } catch (err) {
       console.log(err);
-      res.status(401).json({ message: "Unauthorized" });
+      res.status(401).json({ message: "Requête non autorisée" });
     }
   },
 };

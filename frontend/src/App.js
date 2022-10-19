@@ -10,9 +10,8 @@ import Login from "./pages/Login";
 import PrivateRoutes from "./components/PrivateRoutes";
 import ClientLayout from "./components/ClientLayout";
 import Dashboard from "./pages/Dashboard";
-import AddPostPage from "./pages/AddPostPage";
-import UpdatePostPage from "./pages/UpdatePostPage";
-import Post from "./pages/Post";
+import AddFoodPage from "./pages/AddFoodPage";
+import Food from "./pages/Food";
 
 function App() {
   return (
@@ -22,9 +21,9 @@ function App() {
           <Route element={<PrivateRoutes />}>
             <Route index element={<Home />} />
             <Route path="dashboard" element={<Dashboard />} />
-            <Route path="add_post" element={<AddPostPage />} />
-            <Route path="update_post/:id" element={<UpdatePostPage />} />
-            <Route path="post" element={<Post />} />
+            <Route path="add_food" element={<AddFoodPage />} />
+            {/* <Route path="update_post/:id" element={<UpdatePostPage />} /> */}
+            <Route path="food" element={<Food />} />
           </Route>
         </Route>
         <Route path="/register" element={<Register />} />
