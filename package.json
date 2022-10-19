@@ -1,0 +1,14 @@
+{
+  "name": "food-delivery-app",
+  "version": "1.0.0",
+  "description": "- axios\r - react-router-dom@6\r - react-redux\r - react-modal\r - react-query\r - sass\r - react-spinners\r - react-jwt",
+  "main": "index.js",
+  "scripts": {
+    "project": "concurrently \"cd frontend && npm start\" \"cd backend && npm run watch\"",
+    "init_modules": "concurrently \"cd frontend && npm install\" \"cd backend && npm install\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

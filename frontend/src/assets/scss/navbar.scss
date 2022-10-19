@@ -1,0 +1,80 @@
+nav{
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(15px);
+  padding: 1rem;
+  height: var(--navbar-height);
+  z-index: 4;
+}
+
+.nav-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo a{
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--black-color);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: color 0.3s ease;
+}
+
+.logo a:hover{
+  color: var(--primary-color);
+}
+
+ul{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+li{
+  margin: 0 0.5rem;
+
+  @media screen and (min-width: 768px) {
+    margin: 0 1rem;
+  }
+}
+
+.add-link{
+  @media screen and (min-width: 768px) {
+    display: flex;
+    align-items: center;
+  }
+
+  &:hover .add-icon, &:hover span{
+    color: var(--primary-color);
+  }
+}
+
+.add-link span{
+  display: none;
+
+  @media screen and (min-width: 768px){
+    display: inline;
+    color: var(--black-color);
+    margin-left: 5px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+}
+
+.add-icon{
+  width: 30px;
+  height: 30px;
+  color: var(--black-color);
+  transition: color 0.3s ease;
+}
+.avatar-block{
+  border-radius: 50%;
+  box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.75);
+}
+.avatar{
+  width: 60px;
+  height: 60px;
+}
+
