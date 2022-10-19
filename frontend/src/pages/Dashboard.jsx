@@ -37,8 +37,7 @@ export default function Dashboard() {
   // };
 
   const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("avatar");
+    sessionStorage.clear();
     window.location.href = "/";
   };
 
