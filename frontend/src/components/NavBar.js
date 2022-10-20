@@ -4,7 +4,9 @@ import Avatar, { genConfig } from "react-nice-avatar";
 import { IoMdAddCircle } from "react-icons/io";
 
 const NavBar = () => {
-  const config = genConfig(JSON.parse(localStorage.getItem("avatar") || "{}"));
+  const config = genConfig(
+    JSON.parse(sessionStorage.getItem("avatar") || "{}")
+  );
 
   return (
     <nav id="nav">

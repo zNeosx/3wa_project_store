@@ -14,7 +14,7 @@ export const auth = {
           //   console.log(decodedToken);
           let user = await UserModel.findById(decodedToken.id);
           req.session.user = {
-            id: user._id,
+            _id: user._id,
             email: user.email,
             username: user.username,
           };

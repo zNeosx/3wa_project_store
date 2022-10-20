@@ -43,7 +43,7 @@ const Login = () => {
 
   const generateRandomAvatar = () => {
     const config = genConfig();
-    localStorage.setItem("avatar", JSON.stringify(config));
+    sessionStorage.setItem("avatar", JSON.stringify(config));
   };
 
   const handleFormSubmit = (e) => {

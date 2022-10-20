@@ -24,6 +24,7 @@ export const authController = {
     }
   },
   login: async (req, res) => {
+    console.log(req.body);
     try {
       const user = await UserModel.findOne({
         email: req.body.email,

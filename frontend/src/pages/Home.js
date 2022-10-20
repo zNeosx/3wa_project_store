@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
 import { FoodCard } from "../components/FoodCard";
-import { foodsRequest } from "../api";
+import { foodsRequest, chartRequest } from "../api";
+import { useSelector, useDispatch } from "react-redux";
 
 const Home = () => {
   const [foods, setFoods] = useState([]);
+  const chartState = useSelector((state) => state.chart.chart);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // dispatch(init(chartState));
+  }, []);
 
   const getAllFoods = async () => {
     foodsRequest
@@ -18,6 +25,10 @@ const Home = () => {
 
   useEffect(() => {
     getAllFoods();
+    chartRequest
+      .getOne()
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
   }, []);
 
   return (
