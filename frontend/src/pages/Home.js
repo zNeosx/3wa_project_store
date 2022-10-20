@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
 import { FoodCard } from "../components/FoodCard";
-import { foodsRequest, chartRequest } from "../api";
-import { useSelector, useDispatch } from "react-redux";
+import { foodsRequest, cartRequest } from "../api";
+import { useDispatch } from "react-redux";
+import { init } from "../features/cartSlice";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Home = () => {
   const [foods, setFoods] = useState([]);
-  const chartState = useSelector((state) => state.chart.chart);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    // dispatch(init(chartState));
-  }, []);
 
   const getAllFoods = async () => {
     foodsRequest
@@ -25,18 +23,30 @@ const Home = () => {
 
   useEffect(() => {
     getAllFoods();
-    chartRequest
+    cartRequest
       .getOne()
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        dispatch(init(res.data.foods));
+      })
       .catch((err) => console.log(err));
-  }, []);
+  }, [dispatch]);
 
+  const addToCart = (id) => {
+    cartRequest
+      .addOne(id)
+      .then((res) => {
+        toast.success(res.data.message);
+        dispatch(init(res.data.cart.foods));
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <section id="home">
+      <ToastContainer />
       <h2 className="menu-title page-container">Nos Burgers</h2>
       <div className="foods-container page-container">
         {foods?.map((food) => (
-          <FoodCard key={food._id} food={food} />
+          <FoodCard key={food._id} food={food} addToCart={addToCart} />
         ))}
       </div>
     </section>

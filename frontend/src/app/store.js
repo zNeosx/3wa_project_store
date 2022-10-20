@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import chartReducer from "../features/chartSlice";
+import cartReducer from "../features/cartSlice";
 
 export default configureStore({
   reducer: {
-    chart: chartReducer,
+    cart: cartReducer,
   },
 });

@@ -1,16 +1,12 @@
-import Avatar, { genConfig } from "react-nice-avatar";
-import { decodeToken } from "react-jwt";
-import { NavLink, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { IoAddCircleOutline } from "react-icons/io5";
+import { BsCheckCircle } from "react-icons/bs";
 
-export const FoodCard = ({ food }) => {
+import { useSelector } from "react-redux";
+
+export const FoodCard = ({ food, addToCart }) => {
   // const navigate = useNavigate();
-  const token = sessionStorage.getItem("token");
-  const myDecodedToken = decodeToken(token);
-  const config = genConfig(
-    JSON.parse(sessionStorage.getItem("avatar") || "{}")
-  );
-  const randomConfig = genConfig();
+  const cartState = useSelector((state) => state.cart.cart);
 
   return (
     <div
@@ -20,11 +16,18 @@ export const FoodCard = ({ food }) => {
       <span className="food-base">{food.base}</span>
       <h2>{food.name}</h2>
       <div className="food-header">
-        <img src={food.url} alt={`Image ${food.name}`} />
+        <img src={food.url} alt={`${food.name}`} />
       </div>
       <div className="food-card-bottom">
         <span className="food-price">{food.price} €</span>
-        <IoAddCircleOutline className="add-chart-icon" />
+        {cartState?.find((burger) => burger.food._id === food._id) ? (
+          <BsCheckCircle className="valid_cart_icon" />
+        ) : (
+          <IoAddCircleOutline
+            className="add-cart-icon"
+            onClick={() => addToCart(food._id)}
+          />
+        )}
       </div>
     </div>
   );

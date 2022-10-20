@@ -3,6 +3,7 @@ import "./assets/scss/register.scss";
 import "./assets/scss/navbar.scss";
 import "./assets/scss/home.scss";
 import "./assets/scss/dashboard.scss";
+import "./assets/scss/cartModal.scss";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Register from "./pages/Register";

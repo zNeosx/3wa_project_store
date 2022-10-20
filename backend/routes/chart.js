@@ -9,7 +9,7 @@ router.get("/getOne", auth.checkUser, chartController.getOne);
 router.post("/addOne", auth.checkUser, chartController.addOne);
 router.patch("/incrementOne", auth.checkUser, chartController.incrementOne);
 router.patch("/decrementOne", auth.checkUser, chartController.decrementOne);
-router.delete("/deleteOne", auth.checkUser, chartController.deleteOne);
+router.delete("/deleteOne/:foodId", auth.checkUser, chartController.deleteOne);
 // router.get("/getAll", chartController.getAll);
 // router.get("/getOne/:id", chartController.getOne);
 

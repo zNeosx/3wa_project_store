@@ -49,9 +49,29 @@ export const foodsRequest = {
   },
 };
 
-export const chartRequest = {
+export const cartRequest = {
   getOne: () => {
     return Axios.get("/chart/getOne", {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    });
+  },
+  addOne: (id) => {
+    return Axios.post(
+      "/chart/addOne",
+      {
+        foodId: id,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+      }
+    );
+  },
+  deleteOne: (id) => {
+    return Axios.delete(`/chart/deleteOne/${id}`, {
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       },

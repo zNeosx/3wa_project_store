@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { foodsRequest } from "../api";
-import { FoodCard } from "../components/FoodCard";
+// import { useState } from "react";
+// import { useParams } from "react-router-dom";
+// import { foodsRequest } from "../api";
+// import { FoodCard } from "../components/FoodCard";
 
 export default function Food() {
   //   const { id } = useParams();
-  const [food, setFood] = useState({});
+  // const [food, setFood] = useState({});
 
   //   const getPost = () => {
   //     postsRequest
@@ -19,10 +19,10 @@ export default function Food() {
   //   useEffect(() => {
   //     getPost();
   //   }, []);
-  console.log(food);
+  // console.log(food);
   return (
     <section className="page-container">
-      <FoodCard food={food} />
+      {/* <FoodCard food={food} /> */}
     </section>
   );
 }

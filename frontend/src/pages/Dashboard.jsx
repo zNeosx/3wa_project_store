@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { foodsRequest } from "../api";
 import Avatar, { genConfig } from "react-nice-avatar";
 import { TiDeleteOutline } from "react-icons/ti";
-import { AiOutlineEdit } from "react-icons/ai";
 import Modal from "react-modal";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -20,7 +19,7 @@ const customStyles = {
 
 export default function Dashboard() {
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [foods, setFoods] = useState([]);
+  const [foods] = useState([]);
   const [foodToDelete, setFoodToDelete] = useState(null);
 
   const config = genConfig(JSON.parse(localStorage.getItem("avatar") || "{}"));

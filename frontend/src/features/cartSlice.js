@@ -1,18 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const chartSlice = createSlice({
-  name: "chart",
+export const cartSlice = createSlice({
+  name: "cart",
   initialState: {
-    chart: [],
+    cart: [],
   },
   reducers: {
     init: (state, action) => {
-      state.chart = action.payload;
+      state.cart = action.payload;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { init } = chartSlice.actions;
+export const { init } = cartSlice.actions;
 
-export default chartSlice.reducer;
+export default cartSlice.reducer;
