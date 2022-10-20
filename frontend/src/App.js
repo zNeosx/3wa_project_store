@@ -13,6 +13,7 @@ import ClientLayout from "./components/ClientLayout";
 import Dashboard from "./pages/Dashboard";
 import AddFoodPage from "./pages/AddFoodPage";
 import Food from "./pages/Food";
+import Cart from "./pages/Cart";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="add_food" element={<AddFoodPage />} />
             {/* <Route path="update_post/:id" element={<UpdatePostPage />} /> */}
             <Route path="food" element={<Food />} />
+            <Route path="cart" element={<Cart />} />
           </Route>
         </Route>
         <Route path="/register" element={<Register />} />

@@ -3,8 +3,7 @@ import { FoodCard } from "../components/FoodCard";
 import { foodsRequest, cartRequest } from "../api";
 import { useDispatch } from "react-redux";
 import { init } from "../features/cartSlice";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const Home = () => {
   const [foods, setFoods] = useState([]);
@@ -35,14 +34,15 @@ const Home = () => {
     cartRequest
       .addOne(id)
       .then((res) => {
-        toast.success(res.data.message);
         dispatch(init(res.data.cart.foods));
+        toast.success(res.data.message, {
+          position: "top-center",
+        });
       })
       .catch((err) => console.log(err));
   };
   return (
     <section id="home">
-      <ToastContainer />
       <h2 className="menu-title page-container">Nos Burgers</h2>
       <div className="foods-container page-container">
         {foods?.map((food) => (

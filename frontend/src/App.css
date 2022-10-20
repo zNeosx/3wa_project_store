@@ -415,6 +415,10 @@ section {
   .btn-delete, .btn-edit{
     padding: 10px;
   } */
+  .icons{
+    width: 30px;
+    height: 30px;
+  }
 }
 
 @media screen and (min-width: 1024px) {
