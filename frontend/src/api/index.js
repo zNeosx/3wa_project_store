@@ -77,4 +77,30 @@ export const cartRequest = {
       },
     });
   },
+  incrementOne: (id) => {
+    return Axios.patch(
+      `/chart/incrementOne`,
+      {
+        foodId: id,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+      }
+    );
+  },
+  decrementOne: (id) => {
+    return Axios.patch(
+      `/chart/decrementOne`,
+      {
+        foodId: id,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+      }
+    );
+  },
 };

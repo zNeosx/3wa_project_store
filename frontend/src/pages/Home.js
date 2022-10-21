@@ -22,13 +22,7 @@ const Home = () => {
 
   useEffect(() => {
     getAllFoods();
-    cartRequest
-      .getOne()
-      .then((res) => {
-        dispatch(init(res.data.foods));
-      })
-      .catch((err) => console.log(err));
-  }, [dispatch]);
+  }, []);
 
   const addToCart = (id) => {
     cartRequest
