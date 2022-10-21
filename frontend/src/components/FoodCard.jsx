@@ -8,15 +8,17 @@ export const FoodCard = ({ food, addToCart }) => {
 
   return (
     <div
-      className="food-card"
+      className="card home-card"
       onClick={() => <Navigate to={"food"} state={food} />}
     >
-      <span className="food-base">{food.base}</span>
-      <h2>{food.name}</h2>
-      <div className="food-header">
+      <div className="card-header">
+        <p className="home-card-subtitle">{food.base}</p>
+        <h3 className="card-title">{food.name}</h3>
+      </div>
+      <div className="home-card-img">
         <img src={food.url} alt={`${food.name}`} />
       </div>
-      <div className="food-card-bottom">
+      <div className="home-card-bottom">
         <span className="food-price">{food.price} €</span>
         {cartState?.find((burger) => burger.food._id === food._id) ? (
           <BsCheckCircle className="valid_cart_icon" />

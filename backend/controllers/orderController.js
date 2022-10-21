@@ -29,4 +29,15 @@ export const orderController = {
       res.status(400).json({ errors: error.errors });
     }
   },
+  getUserOrders: async (req, res) => {
+    try {
+      const orders = await OrderModel.find({
+        userId: req.session.user._id,
+      }).populate("foods.food");
+      res.status(200).json(orders);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ errors: error.errors });
+    }
+  },
 };

@@ -117,4 +117,11 @@ export const orderRequest = {
       }
     );
   },
+  getUserOrders: () => {
+    return Axios.get("/orders/getUserOrders", {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    });
+  },
 };

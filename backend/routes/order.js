@@ -8,5 +8,6 @@ const router = express.Router();
 // router.get("/getAll", auth.checkUser, orderController.getAll);
 // router.get("/getOne", auth.checkUser, orderController.getOne);
 router.post("/addOne", auth.checkUser, orderController.addOne);
+router.get("/getUserOrders", auth.checkUser, orderController.getUserOrders);
 
 export default router;

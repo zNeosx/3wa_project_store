@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import Avatar, { genConfig } from "react-nice-avatar";
-import { TiDeleteOutline } from "react-icons/ti";
 import Modal from "react-modal";
-import { foodsRequest } from "../api";
+import { orderRequest } from "../api";
+import Skeleton from "react-loading-skeleton";
 
 const customStyles = {
   content: {
@@ -18,87 +17,70 @@ const customStyles = {
 
 export default function Dashboard() {
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [foods] = useState([]);
-  const [foodToDelete, setFoodToDelete] = useState(null);
+  const [orders, setOrders] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const config = genConfig(JSON.parse(localStorage.getItem("avatar") || "{}"));
-
-  // const getPostsUser = () => {
-  //   foodsRequest
-  //     .getPostsUser()
-  //     .then((res) => {
-  //       setPosts(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+  const getUserOrders = async () => {
+    console.log("gerUserOrders");
+    orderRequest
+      .getUserOrders()
+      .then((res) => {
+        console.log(res);
+        setOrders(res.data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const logout = () => {
     sessionStorage.clear();
     window.location.href = "/";
   };
 
-  const deleteFood = (id) => {
-    foodsRequest
-      .deleteOne(id)
-      .then((res) => {
-        toast.success("Produit supprimé avec succès");
-        window.location.reload();
-      })
-      .catch((err) => console.log(err));
-  };
-
-  // const updatePost = (id) => {
-  //   window.location.href = `update_post/${id}`;
-  // };
-
-  // useEffect(() => {
-  //   getPostsUser();
-  // }, []);
+  useEffect(() => {
+    getUserOrders();
+  }, []);
 
   return (
     <section id="dashboard" className="page-container">
-      {/* <ToastContainer /> */}
       <h1>Dashboard</h1>
       <h2>Mes commandes</h2>
-      {foods?.map((food) => (
-        <div className="food-card" key={food._id}>
-          <div className="food-header">
-            <div className="food-header-user">
-              <Avatar className="food-header-avatar" {...config} />
-              <span className="food-header-username">
-                {food.userId.username}
-              </span>
+      <div className="orders-container card-container">
+        {isLoading ? (
+          <Skeleton cards={3} />
+        ) : (
+          orders?.map((order) => (
+            <div className="card" key={order._id}>
+              <div className="card-header">
+                <h3 className="card-title">Commande N° {order._id}</h3>
+                <p className="card-subtitle">Du {order.createdAt}</p>
+              </div>
+              <div className="order-burger-container">
+                {order.foods.map((item, index) => (
+                  <div className="order-burger-card" key={item.food._id}>
+                    <div className="order-burger-header">
+                      <h3 className="order-burger-name">
+                        {item.quantity + " " + item.food.name}
+                      </h3>
+                      <p className="order-burger-price">
+                        Prix unitaire: {item.food.price} €
+                      </p>
+                    </div>
+                    <div className="">
+                      <p>{item.food.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="card-bottom">
+                <p className="card-price">Prix total: {order.price} €</p>
+              </div>
             </div>
-            <div className="food-header-btn">
-              <button
-                className="btn btn-delete"
-                onClick={() => {
-                  setFoodToDelete(food._id);
-                  setIsOpen(true);
-                }}
-              >
-                <TiDeleteOutline className="food-icons" />
-                Supprimer
-              </button>
-              {/* <button
-                className="btn btn-edit"
-                onClick={() => updatefood(food._id)}
-              >
-                <AiOutlineEdit className="food-icons" />
-                Modifier
-              </button> */}
-            </div>
-          </div>
-          <h2>{food.name}</h2>
-          <span className="food-price">{food.price}</span>
-          <span className="food-quantity">
-            {food.quantity > 0 ? food.quantity : "Rupture de stock"}
-          </span>
-          <span className="food-date">{food.createdAt}</span>
-        </div>
-      ))}
+          ))
+        )}
+      </div>
       <button className="btn btn-logout" onClick={() => logout()}>
         Déconnexion
       </button>
@@ -109,15 +91,7 @@ export default function Dashboard() {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <h2>Tu veux vraiment supprimer ce produit ?</h2>
-        <div className="modal-btn">
-          <button className="btn" onClick={() => deleteFood(foodToDelete)}>
-            Oui
-          </button>
-          <button className="btn" onClick={() => setIsOpen(false)}>
-            Non
-          </button>
-        </div>
+        <h2>Confirmation</h2>
       </Modal>
     </section>
   );

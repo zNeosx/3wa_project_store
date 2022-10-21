@@ -197,7 +197,7 @@ section {
 
 }
 
-.food-card{
+/* .food-card{
   display: flex;
   flex-direction: column;
   background-color: #fff;
@@ -206,22 +206,7 @@ section {
   position: relative;
   word-break: keep-all;
   padding: 1rem;
-}
-
-.food-base{
-  font-weight: 500;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: rgb(170, 170, 170);
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Old versions of Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
-}
+} */
 
 .food-header {
     width: 100%;

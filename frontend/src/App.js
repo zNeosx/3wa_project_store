@@ -1,4 +1,5 @@
 import "./App.css";
+import "./assets/scss/style.scss";
 import "./assets/scss/register.scss";
 import "./assets/scss/navbar.scss";
 import "./assets/scss/home.scss";
