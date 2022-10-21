@@ -86,3 +86,17 @@ li{
   height: 60px;
 }
 
+.cart-link{
+  position: relative;
+}
+
+.cart-count{
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 0 8px;
+  color: #fff;
+  background-color: var(--primary-color);
+}
