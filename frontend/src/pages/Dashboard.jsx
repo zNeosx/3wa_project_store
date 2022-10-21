@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import Modal from "react-modal";
 import { orderRequest } from "../api";
 import Skeleton from "react-loading-skeleton";
+import { OrderCardSkeleton } from "../components/OrderCardSkeleton";
 
 const customStyles = {
   content: {
@@ -25,7 +26,6 @@ export default function Dashboard() {
     orderRequest
       .getUserOrders()
       .then((res) => {
-        console.log(res);
         setOrders(res.data);
         setIsLoading(false);
       })
@@ -49,7 +49,7 @@ export default function Dashboard() {
       <h2>Mes commandes</h2>
       <div className="orders-container card-container">
         {isLoading ? (
-          <Skeleton cards={3} />
+          <OrderCardSkeleton cards={3} />
         ) : (
           orders?.map((order) => (
             <div className="card" key={order._id}>

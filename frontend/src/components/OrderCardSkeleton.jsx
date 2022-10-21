@@ -5,10 +5,10 @@ export const OrderCardSkeleton = ({ cards }) => {
     .fill(0)
     .map((_, index) => (
       <div className="order-card-skeleton" key={index}>
-        <Skeleton width={60} height={21} />
-        <Skeleton width={250} height={35} />
-        <Skeleton height={310} />
-        <Skeleton height={40} />
+        <Skeleton height={21} />
+        <Skeleton height={21} />
+        <Skeleton height={100} />
+        <Skeleton height={21} />
       </div>
     ));
 };
