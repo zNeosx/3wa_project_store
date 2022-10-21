@@ -13,6 +13,7 @@ import authRouter from "./routes/auth.js";
 import postRouter from "./routes/posts.js";
 import foodRouter from "./routes/food.js";
 import chartRouter from "./routes/chart.js";
+import orderRouter from "./routes/order.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -55,6 +56,7 @@ async function init() {
   app.use("/post/", postRouter);
   app.use("/foods/", foodRouter);
   app.use("/chart/", chartRouter);
+  app.use("/orders/", orderRouter);
   app.use("/images", express.static(path.join(__dirname, "images")));
 }
 

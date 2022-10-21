@@ -1,28 +1,13 @@
-import { useEffect, useState } from "react";
 import { FoodCard } from "../components/FoodCard";
-import { foodsRequest, cartRequest } from "../api";
+import { cartRequest } from "../api";
 import { useDispatch } from "react-redux";
 import { init } from "../features/cartSlice";
 import { toast } from "react-toastify";
+import { FoodCardSkeleton } from "../components/FoodCartSkeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
-const Home = () => {
-  const [foods, setFoods] = useState([]);
+const Home = ({ isLoading, foods }) => {
   const dispatch = useDispatch();
-
-  const getAllFoods = async () => {
-    foodsRequest
-      .getAll()
-      .then((res) => {
-        setFoods(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  useEffect(() => {
-    getAllFoods();
-  }, []);
 
   const addToCart = (id) => {
     cartRequest
@@ -39,9 +24,13 @@ const Home = () => {
     <section id="home">
       <h2 className="menu-title page-container">Nos Burgers</h2>
       <div className="foods-container page-container">
-        {foods?.map((food) => (
-          <FoodCard key={food._id} food={food} addToCart={addToCart} />
-        ))}
+        {isLoading ? (
+          <FoodCardSkeleton cards={8} />
+        ) : (
+          foods?.map((food) => (
+            <FoodCard key={food._id} food={food} addToCart={addToCart} />
+          ))
+        )}
       </div>
     </section>
   );

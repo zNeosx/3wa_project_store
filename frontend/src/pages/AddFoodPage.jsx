@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { foodsRequest } from "../api";
 
 export default function AddFoodPage() {
@@ -24,7 +23,7 @@ export default function AddFoodPage() {
 
     foodsRequest
       .addOne(form)
-      .then((res) => {
+      .then(() => {
         toast.success("Produit ajouté avec succès");
         navigate("/");
       })
@@ -36,7 +35,6 @@ export default function AddFoodPage() {
   return (
     <section id="auth-page">
       <form className="form" onSubmit={handleFormSubmit}>
-        <ToastContainer />
         <div className="form-title">
           <h1>Nouvelle publication</h1>
         </div>

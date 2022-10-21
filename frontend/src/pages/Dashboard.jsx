@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { foodsRequest } from "../api";
+import { toast } from "react-toastify";
 import Avatar, { genConfig } from "react-nice-avatar";
 import { TiDeleteOutline } from "react-icons/ti";
 import Modal from "react-modal";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { foodsRequest } from "../api";
 
 const customStyles = {
   content: {
@@ -62,7 +61,6 @@ export default function Dashboard() {
     <section id="dashboard" className="page-container">
       {/* <ToastContainer /> */}
       <h1>Dashboard</h1>
-      <ToastContainer />
       <h2>Mes commandes</h2>
       {foods?.map((food) => (
         <div className="food-card" key={food._id}>

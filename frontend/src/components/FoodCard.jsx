@@ -1,11 +1,9 @@
+import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { BsCheckCircle } from "react-icons/bs";
 
-import { useSelector } from "react-redux";
-
 export const FoodCard = ({ food, addToCart }) => {
-  // const navigate = useNavigate();
   const cartState = useSelector((state) => state.cart.cart);
 
   return (

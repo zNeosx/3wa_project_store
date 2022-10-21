@@ -257,11 +257,17 @@ section {
 .cart-icon{
   width: 35px;
   height: 35px;
+  pointer-events: none;
+  color: gray;
+}
+
+.cart-icon-active{
+  width: 35px;
+  height: 35px;
   transition: color 0.3s ease;
   cursor: pointer;
 }
-
-.cart-icon:hover{
+.cart-icon-active:hover{
   color: var(--primary-color);
 }
 .add-cart-icon path{

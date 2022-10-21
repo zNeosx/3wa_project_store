@@ -70,8 +70,8 @@ export const cartRequest = {
       }
     );
   },
-  deleteOne: (id) => {
-    return Axios.delete(`/chart/deleteOne/${id}`, {
+  deleteFoodFromCart: (id) => {
+    return Axios.delete(`/chart/deleteFoodFromCart/${id}`, {
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       },
@@ -96,6 +96,20 @@ export const cartRequest = {
       {
         foodId: id,
       },
+      {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+      }
+    );
+  },
+};
+
+export const orderRequest = {
+  addOne: (price) => {
+    return Axios.post(
+      "/orders/addOne",
+      { price },
       {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("token")}`,

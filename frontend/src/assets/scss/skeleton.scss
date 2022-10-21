@@ -1,0 +1,16 @@
+.food-card-skeleton{
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+    position: relative;
+    word-break: keep-all;
+    padding: 1rem;
+    gap: 0.5rem;
+}
+
+.food-name-skeleton{
+    width: 60px;
+    height: 20px;
+}

@@ -1,9 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import { AiFillDelete } from "react-icons/ai";
 import { cartRequest } from "../api";
 import { init } from "../features/cartSlice";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
 export default function CartModal({ cartModalState }) {
   const cartState = useSelector((state) => state.cart.cart);
@@ -12,7 +12,7 @@ export default function CartModal({ cartModalState }) {
 
   const deleteFoodFromCartModal = (id) => {
     cartRequest
-      .deleteOne(id)
+      .deleteFoodFromCart(id)
       .then((res) => {
         dispatch(init(res.data.cart.foods));
         toast.success(res.data.message, {
@@ -21,6 +21,7 @@ export default function CartModal({ cartModalState }) {
       })
       .catch((err) => console.log(err));
   };
+
   return (
     <div className={`cart-modal ${cartModalState && "cart-open"}`}>
       <div className="cart-modal__container">
