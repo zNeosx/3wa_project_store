@@ -10,6 +10,7 @@ import { fileURLToPath } from "url";
 import { port, hostname, localClientURL, mongoUrl } from "./config/index.js";
 
 import authRouter from "./routes/auth.js";
+import adminRouter from "./routes/admin.js";
 import postRouter from "./routes/posts.js";
 import foodRouter from "./routes/food.js";
 import chartRouter from "./routes/chart.js";
@@ -38,6 +39,7 @@ app.use(
 );
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 mongoose
   .connect(mongoUrl, {
@@ -53,6 +55,7 @@ async function init() {
   });
 
   app.use("/auth/", authRouter);
+  app.use("/admin/", adminRouter);
   app.use("/post/", postRouter);
   app.use("/foods/", foodRouter);
   app.use("/chart/", chartRouter);

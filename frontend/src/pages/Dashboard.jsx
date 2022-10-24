@@ -50,7 +50,7 @@ export default function Dashboard() {
       <div className="orders-container card-container">
         {isLoading ? (
           <OrderCardSkeleton cards={3} />
-        ) : (
+        ) : orders.length !== 0 ? (
           orders?.map((order) => (
             <div className="card" key={order._id}>
               <div className="card-header">
@@ -79,6 +79,8 @@ export default function Dashboard() {
               </div>
             </div>
           ))
+        ) : (
+          <p>Vous n'avez pas encore passé de commande</p>
         )}
       </div>
       <button className="btn btn-logout" onClick={() => logout()}>

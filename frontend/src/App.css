@@ -99,10 +99,12 @@ section {
 }
 
 #auth-page{
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0;
+  background-color: var(--white-color);
 }
 
 .form {
