@@ -61,6 +61,7 @@ body {
   font-family: "Poppins", sans-serif;
   background: var(--primary-color);
   font-size: var(--text-fs-sm);
+  overflow-x: hidden;
 }
 
 .App {

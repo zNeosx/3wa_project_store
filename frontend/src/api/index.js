@@ -125,3 +125,44 @@ export const orderRequest = {
     });
   },
 };
+
+export const adminRequest = {
+  login: (formData) => {
+    return Axios.post("/admin/login", formData);
+  },
+  getUsers: () => {
+    return Axios.get("/admin/users/getAll", {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    });
+  },
+  deleteOneUser: (id) => {
+    return Axios.delete(`/admin/users/deleteOne/${id}`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    });
+  },
+  getFoods: () => {
+    return Axios.get("/admin/foods/getAll", {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    });
+  },
+  addOneFood: (formData) => {
+    return Axios.post("/admin/foods/addOne", formData, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    });
+  },
+  deleteOneFood: (id) => {
+    return Axios.delete(`/admin/foods/deleteOne/${id}`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    });
+  },
+};

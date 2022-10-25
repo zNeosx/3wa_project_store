@@ -7,6 +7,7 @@ import "./assets/scss/dashboard.scss";
 import "./assets/scss/cartModal.scss";
 import "./assets/scss/cart.scss";
 import "./assets/scss/skeleton.scss";
+import "./assets/scss/admin.scss";
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
@@ -20,38 +21,15 @@ import Food from "./pages/Food";
 import Cart from "./pages/Cart";
 import { SkeletonTheme } from "react-loading-skeleton";
 import Order from "./pages/Order";
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminLayout from "./components/AdminLayout";
+import AdminRoutes from "./components/AdminRoutes";
+import AdminUsers from "./pages/admin/AdminUsers";
 
 function App() {
   const [foods, setFoods] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // const getAllFoods = async () => {
-  //   foodsRequest
-  //     .getAll()
-  //     .then((res) => {
-  //       setFoods(res.data);
-  //       setIsLoading(false);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
-  // const getCartUser = async () => {
-  //   cartRequest
-  //     .getOne()
-  //     .then((res) => {
-  //       dispatch(init(res.data.foods));
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
-
-  // useEffect(() => {
-  //   if (sessionStorage.getItem("token")) {
-  //     getAllFoods();
-  //     getCartUser();
-  //   }
-  // }, [sessionStorage.getItem("token")]);
   return (
     <div className="App">
       <SkeletonTheme baseColor="#c2cfd6" highlightColor="#f0f3f5">
@@ -77,6 +55,13 @@ function App() {
           </Route>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
+
+          <Route element={<AdminRoutes />}>
+            <Route path="/admin/" element={<AdminLayout />}>
+              <Route path="users" element={<AdminUsers />} />
+            </Route>
+          </Route>
         </Routes>
       </SkeletonTheme>
     </div>

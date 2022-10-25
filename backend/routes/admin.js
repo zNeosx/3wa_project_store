@@ -16,6 +16,7 @@ router.delete(
 );
 
 // foods admin
+router.get("/foods/getAll", auth.checkAdmin, adminController.getFoods);
 router.post("/foods/addOne", auth.checkAdmin, adminController.addOneFood);
 router.delete(
   "/foods/deleteOne/:id",
