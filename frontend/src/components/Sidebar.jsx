@@ -35,10 +35,10 @@ export default function Sidebar() {
         </li>
       </ul>
 
-      {/* <div className="sidebar_btn" onClick={() => toggleSidebar()}>
+      <div className="sidebar_btn" onClick={() => toggleSidebar()}>
         <div className="sidebar_btn_line"></div>
         <div className="sidebar_btn_line"></div>
-      </div> */}
+      </div>
     </div>
   );
 }

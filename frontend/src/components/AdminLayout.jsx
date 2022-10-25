@@ -39,7 +39,7 @@ export default function AdminLayout() {
   return (
     <div className="admin-layout">
       <ToastContainer />
-      {/* <Sidebar /> */}
+      <Sidebar />
       <Outlet />
     </div>
   );
