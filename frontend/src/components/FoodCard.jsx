@@ -17,6 +17,12 @@ export const FoodCard = ({ food, addToCart }) => {
       </div>
       <div className="home-card-img">
         <img src={food.url} alt={`${food.name}`} />
+        <div className="home-card-infos">
+          <p>
+            Ingrédients : <br />
+            {food.ingredients}
+          </p>
+        </div>
       </div>
       <div className="home-card-bottom">
         <span className="food-price">{food.price} €</span>
