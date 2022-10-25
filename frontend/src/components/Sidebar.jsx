@@ -9,6 +9,10 @@ export default function Sidebar() {
     setSidebarState(!sidebarState);
   };
 
+  const logout = () => {
+    sessionStorage.clear();
+    window.location.href = "/";
+  };
   return (
     <div id="sidebar" className={sidebarState ? "sidebar-open" : ""}>
       <div className="sidebar_header">
@@ -35,6 +39,9 @@ export default function Sidebar() {
         </li>
       </ul>
 
+      <button className="btn btn-logout a__btn_logout" onClick={() => logout()}>
+        Déconnexion
+      </button>
       <div className="sidebar_btn" onClick={() => toggleSidebar()}>
         <div className="sidebar_btn_line"></div>
         <div className="sidebar_btn_line"></div>

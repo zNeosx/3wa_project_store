@@ -1,9 +1,26 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { adminRequest } from "../../api";
+import { initUserState } from "../../features/adminSlice";
 
 export default function AdminUsers() {
+  const dispatch = useDispatch();
   const users = useSelector((state) => state.admin.users);
 
+  const deleteOneUser = (id) => {
+    adminRequest
+      .deleteOneUser(id)
+      .then((res) => {
+        toast.success(res.data.message);
+        dispatch(initUserState(res.data.users));
+        // window.location.reload();
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+        console.log(err);
+      });
+  };
   return (
     <section className="admin-users">
       <h2 className="a__page_title">Utilisateurs récents</h2>
@@ -16,8 +33,13 @@ export default function AdminUsers() {
               <br />
               <span className="a__user_email">{user.email}</span>
             </div>
-            <div className="a__user_actions">
-              <button className="user_action">Supprimer</button>
+            <div className="a__btn_actions">
+              <button
+                className="btn_action_delete"
+                onClick={() => deleteOneUser(user._id)}
+              >
+                Supprimer
+              </button>
             </div>
           </div>
         ))}

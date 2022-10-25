@@ -10,7 +10,7 @@
 .a__page_title{
     text-align: right;
 }
-.a__users_container{
+.a__users_container, .a__foods_container{
     background-color: #fff;
     display: grid;
     grid-template-rows: repeat(auto-fill, 1fr);
@@ -19,7 +19,7 @@
     margin: 1rem 0;
 }
 
-.a__user_card{
+.a__user_card, .a__food_card{
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -34,14 +34,30 @@
     margin-right: 0.5rem;
 }
 
-.user_action{
+.a__btn_actions{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.a__btn_actions button{
     padding: 0.5rem;
     outline: none;
     border: none;
-    background-color: rgba(255, 0, 0, 0.596);
-    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    border-radius: 0.4rem;
+    color: var(--white-color);
 }
 
+.btn_action_update{
+    background-color: rgba(0, 0, 255, 0.8);
+}
+.btn_action_delete{
+    background-color: rgba(255, 0, 0, 0.8);
+}
+
+// ---- SIDEBAR ----
 #sidebar{
     background-color: var(--primary-color);
     position: absolute;
@@ -52,7 +68,8 @@
     transform: translateX(-100%);
     z-index: 9;
     transition: transform 0.5s ease;
-
+    display: flex;
+    flex-direction: column;
 }
 
 #sidebar.sidebar-open{
@@ -76,7 +93,7 @@
 }
 .sidebar_btn{
     position: absolute;
-    top: 20px;
+    top: 15px;
     right: initial;
     left: 100%;
     width: 40px;
@@ -140,3 +157,8 @@
     letter-spacing: 0.05em;
 
 }
+
+.a__btn_logout{
+    margin-top: auto;
+}
+// ---- ./ SIDEBAR ----

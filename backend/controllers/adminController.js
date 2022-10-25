@@ -41,8 +41,12 @@ export const adminController = {
   deleteOneUser: async (req, res) => {
     try {
       await UserModel.findByIdAndDelete(req.params.id);
-      res.status(200).json({ message: "L'utilisateur a bien été supprimé !" });
+      const users = await UserModel.find();
+      res
+        .status(200)
+        .json({ message: "L'utilisateur a bien été supprimé !", users });
     } catch (error) {
+      console.log(error);
       if (error.errors) {
         res.status(400).json({ error: error.errors });
       } else {
@@ -70,7 +74,10 @@ export const adminController = {
         url: `${localServerURL}/images/${req.body.alias}`,
       });
       await food.save();
-      res.status(200).json({ message: `${req.body.name} a bien été ajouté !` });
+      const foods = await FoodModel.find();
+      res
+        .status(200)
+        .json({ message: `${req.body.name} a bien été ajouté !`, foods });
     } catch (error) {
       if (error.errors) {
         res.status(400).json({ error: error.errors });
@@ -82,7 +89,10 @@ export const adminController = {
   deleteOneFood: async (req, res) => {
     try {
       await FoodModel.findByIdAndDelete(req.params.id);
-      res.status(200).json({ message: "Le produit a bien été supprimé !" });
+      const foods = await FoodModel.find();
+      res
+        .status(200)
+        .json({ message: "Le produit a bien été supprimé !", foods });
     } catch (error) {
       if (error.errors) {
         res.status(400).json({ error: error.errors });

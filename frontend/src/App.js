@@ -25,6 +25,7 @@ import AdminLogin from "./pages/admin/AdminLogin";
 import AdminLayout from "./components/AdminLayout";
 import AdminRoutes from "./components/AdminRoutes";
 import AdminUsers from "./pages/admin/AdminUsers";
+import AdminFoods from "./pages/admin/AdminFoods";
 
 function App() {
   const [foods, setFoods] = useState([]);
@@ -60,6 +61,7 @@ function App() {
           <Route element={<AdminRoutes />}>
             <Route path="/admin/" element={<AdminLayout />}>
               <Route path="users" element={<AdminUsers />} />
+              <Route path="foods" element={<AdminFoods />} />
             </Route>
           </Route>
         </Routes>

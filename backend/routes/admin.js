@@ -10,7 +10,7 @@ router.post("/login", adminController.login);
 // users admin
 router.get("/users/getAll", auth.checkAdmin, adminController.getUsers);
 router.delete(
-  "users//deleteOne/:id",
+  "/users/deleteOne/:id",
   auth.checkAdmin,
   adminController.deleteOneUser
 );
