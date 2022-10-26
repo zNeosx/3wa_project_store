@@ -127,121 +127,6 @@ export const chartController = {
       res.status(400).json({ errors: error.errors });
     }
   },
-  // addOne: async (req, res) => {
-  //   try {
-  //     const userChart = await ChartModel.findOne({
-  //       userId: req.session.user._id,
-  //     });
-  //     if (userChart) {
-  //       const verifyFoodInChart = await ChartModel.findOne({
-  //         userId: req.session.user._id,
-  //         "foods.food": req.body.foodId,
-  //       });
-  //       if (verifyFoodInChart) {
-  //         await ChartModel.updateOne(
-  //           {
-  //             userId: req.session.user._id,
-  //             "foods.food": req.body.foodId,
-  //           },
-  //           {
-  //             $inc: {
-  //               "foods.$.quantity": 1,
-  //             },
-  //           }
-  //         );
-  //         await FoodModel.updateOne(
-  //           {
-  //             _id: req.body.foodId,
-  //           },
-  //           {
-  //             $inc: {
-  //               quantity: -1,
-  //             },
-  //           }
-  //         );
-  //         const cartUpdated = await ChartModel.findOne(
-  //           {
-  //             userId: req.session.user._id,
-  //           },
-  //           {
-  //             userId: false,
-  //           }
-  //         ).populate("foods.food");
-  //         res
-  //           .status(200)
-  //           .json({ message: "Quantité mise à jour", cart: cartUpdated });
-  //       } else {
-  //         await ChartModel.updateOne(
-  //           {
-  //             userId: req.session.user._id,
-  //           },
-  //           {
-  //             $push: {
-  //               foods: {
-  //                 food: req.body.foodId,
-  //                 quantity: 1,
-  //               },
-  //             },
-  //           }
-  //         );
-  //         await FoodModel.updateOne(
-  //           {
-  //             _id: req.body.foodId,
-  //           },
-  //           {
-  //             $inc: {
-  //               quantity: -1,
-  //             },
-  //           }
-  //         );
-  //         const cartUpdated = await ChartModel.findOne(
-  //           {
-  //             userId: req.session.user._id,
-  //           },
-  //           {
-  //             userId: false,
-  //           }
-  //         ).populate("foods.food");
-  //         res
-  //           .status(200)
-  //           .json({ message: "Produit ajouté au panier", cart: cartUpdated });
-  //       }
-  //     } else {
-  //       const chart = new ChartModel({
-  //         userId: req.session.user._id,
-  //         foods: [
-  //           {
-  //             food: req.body.foodId,
-  //             quantity: 1,
-  //           },
-  //         ],
-  //       });
-  //       await FoodModel.updateOne(
-  //         {
-  //           _id: req.body.foodId,
-  //         },
-  //         {
-  //           $inc: {
-  //             quantity: -1,
-  //           },
-  //         }
-  //       );
-  //       const cartUpdated = await ChartModel.findOne(
-  //         {
-  //           userId: req.session.user._id,
-  //         },
-  //         {
-  //           userId: false,
-  //         }
-  //       ).populate("foods.food");
-  //       await chart.save();
-  //       res.status(200).json({ cart: cartUpdated });
-  //     }
-  //     //   res.status(201).json({ chart });
-  //   } catch (error) {
-  //     res.status(400).json({ error: error.message });
-  //   }
-  // },
   deleteOne: async (req, res) => {
     try {
       const food = await FoodModel.findOne(
@@ -274,16 +159,6 @@ export const chartController = {
           },
         }
       );
-      //   await FoodModel.updateOne(
-      //     {
-      //       _id: req.body.foodId,
-      //     },
-      //     {
-      //       $inc: {
-      //         quantity: foodChartQuantity.quantity,
-      //       },
-      //     }
-      //   );
       const cartUpdated = await ChartModel.findOne(
         {
           userId: req.session.user._id,

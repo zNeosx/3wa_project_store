@@ -7,6 +7,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
   const navigate = useNavigate();
+
+  // init form state
   const [form, setForm] = React.useState({
     firstname: "",
     lastname: "",
@@ -15,6 +17,7 @@ const Register = () => {
     password: "",
   });
 
+  // Init from inputs
   const inputs = [
     {
       id: 1,

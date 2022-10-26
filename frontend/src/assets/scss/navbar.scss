@@ -17,17 +17,12 @@ nav{
 }
 
 .logo a{
-  font-size: 1.1rem;
   font-weight: 700;
   color: var(--black-color);
   text-decoration: none;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   transition: color 0.3s ease;
-
-  @media screen and (min-width: 1024px) {
-    font-size: 1.2rem;
-  }
 }
 
 .logo a:hover{
@@ -81,6 +76,7 @@ li{
   border-radius: 50%;
   box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.75);
 }
+
 .avatar{
   width: 60px;
   height: 60px;
@@ -94,9 +90,9 @@ li{
   position: absolute;
   top: -5px;
   right: -10px;
-  background-color: #fff;
   border-radius: 50%;
   padding: 0 8px;
   color: #fff;
+  font-size: 1.1rem;
   background-color: var(--primary-color);
 }

@@ -7,7 +7,6 @@ export const adminController = {
   login: async (req, res) => {
     try {
       const { password } = req.body;
-      console.log(req.body);
       if (password === process.env.APP_ADMIN_PASSWORD) {
         const token = jwt.sign(
           { username: "admin", role: "admin" },

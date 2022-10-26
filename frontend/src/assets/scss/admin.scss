@@ -1,10 +1,15 @@
 .admin-layout{
     overflow-x: hidden;
+    @media screen and (min-width: 1024px) {
+        display: flex;
+    }
 }
+
 .admin-layout section{
     background-color: var(--white-color);
     min-height: 100vh;
     overflow-x: hidden;
+    width: 100%;
 }
 
 .a__page_title{
@@ -70,6 +75,16 @@
     transition: transform 0.5s ease;
     display: flex;
     flex-direction: column;
+
+    @media screen and (min-width: 1024px) {
+        position: sticky;
+        top: 0;
+        transform: none;
+    }
+
+    @media screen and (min-width: 1200px) {
+        padding: 1rem 1.5rem;
+    }
 }
 
 #sidebar.sidebar-open{
@@ -100,7 +115,9 @@
     height: 40px;
     padding: 10px;
     z-index: 10;
-
+    @media screen and (min-width: 1024px) {
+        display: none;
+    }
     .sidebar_btn_line{
         width: 70%;
         height: 5px;
@@ -132,6 +149,8 @@
 
 .sidebar_header h1{
     color: var(--black-color);
+  font-size: clamp(2rem, 3vw, 3rem);
+
 }
 
 .sidebar_link_container{
@@ -142,23 +161,30 @@
 }
 
 .sidebar_link_container li{
-    background-color: var(--white-color);
-    display: block;
+    display: flex;
     width: 100%;
     text-align: center;
+}
+
+.sidebar_link{
+    width: 100%;
+    text-decoration: none;
+    background-color: var(--white-color);
+    color: var(--black-color);
+    font-weight: 500;
+    letter-spacing: 0.05em;
     padding: 0.5rem;
     border-radius: 0.5rem;
 }
-.sidebar_link{
-    text-decoration: none;
-    color: var(--black-color);
-    font-size: 1.5rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
 
+.sidebar_link.active{
+    color: var(--primary-color);
+    pointer-events: none;
 }
 
 .a__btn_logout{
     margin-top: auto;
+    @media screen and (min-width: 1200px) {
+        font-size: 1.2rem;
+    }
 }
-// ---- ./ SIDEBAR ----

@@ -59,34 +59,34 @@ export default function Cart() {
   return (
     <section className="cart">
       <div className="page-container cart-container">
-        <div className="cart__item__container">
+        <div className="cart-item-container">
           <h1>Mon panier</h1>
           {cartState?.length > 0 ? (
             cartState?.map((burger) => (
-              <div className="cart__item" key={burger._id}>
-                <div className="cart__item_img">
+              <div className="cart-item" key={burger._id}>
+                <div className="cart-item-img">
                   <img src={burger.food.url} alt={burger.food.name} />
                 </div>
-                <div className="cart__item_content">
-                  <div className="cart__item_header">
+                <div className="cart-item-content">
+                  <div className="cart-item-header">
                     <h3>{burger.food.name}</h3>
                     <AiFillDelete
-                      className="icons delete_cart_item_icon"
+                      className="icons delete-cart-item-icon"
                       onClick={() => deleteFoodFromCartModal(burger.food._id)}
                     />
                   </div>
                   <p>{burger.food.price} €</p>
-                  <div className="quantity__management">
+                  <div className="quantity-management">
                     <button
-                      className="quantity__btn"
+                      className="quantity-btn"
                       onClick={() => decrementQty(burger.food._id)}
                       disabled={burger.quantity === 1}
                     >
                       -
                     </button>
-                    <span className="quantity__number">{burger.quantity}</span>
+                    <span className="quantity-number">{burger.quantity}</span>
                     <button
-                      className="quantity__btn"
+                      className="quantity-btn"
                       onClick={() => incrementQty(burger.food._id)}
                       disabled={burger.quantity === 5}
                     >
@@ -100,7 +100,7 @@ export default function Cart() {
             <h2>Ton panier est vite</h2>
           )}
         </div>
-        <div className="cart_price__container">
+        <div className="cart-price-container">
           <h2>Total</h2>
           <p>{cartPrice} €</p>
         </div>

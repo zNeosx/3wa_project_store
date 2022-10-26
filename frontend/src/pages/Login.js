@@ -1,19 +1,22 @@
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { authRequest } from "../api";
-import FormInput from "../components/FormInput";
 import { genConfig } from "react-nice-avatar";
 import { toast, ToastContainer } from "react-toastify";
+import { authRequest } from "../api";
+import FormInput from "../components/FormInput";
 import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const navigate = useNavigate();
+
+  // init from state
   const [form, setForm] = React.useState({
     email: "",
     password: "",
   });
 
-  let inputs = [
+  // Init from inputs
+  const inputs = [
     {
       id: 1,
       name: "email",
@@ -28,10 +31,7 @@ const Login = () => {
       name: "password",
       type: "password",
       placeholder: "Mot de passe*",
-      //   errorMessage:
-      //     "Votre mot de passe doit être composé de 8 à 20 caractères, dont au moins une majuscule, une minuscule, un chiffre et un caractère spécial",
       label: "Mot de passe",
-      //   pattern: "",
       required: true,
     },
   ];
@@ -57,7 +57,6 @@ const Login = () => {
         navigate("/");
       })
       .catch(({ response: { data } }) => {
-        console.log(data.message);
         toast.error(data.message, {
           margin: "60px",
           position: "top-right",

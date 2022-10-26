@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 import Modal from "react-modal";
 import { orderRequest } from "../api";
-import Skeleton from "react-loading-skeleton";
 import { OrderCardSkeleton } from "../components/OrderCardSkeleton";
 
 const customStyles = {
@@ -22,7 +20,6 @@ export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(true);
 
   const getUserOrders = async () => {
-    console.log("gerUserOrders");
     orderRequest
       .getUserOrders()
       .then((res) => {
@@ -45,7 +42,6 @@ export default function Dashboard() {
 
   return (
     <section id="dashboard" className="page-container">
-      <h1>Dashboard</h1>
       <h2>Mes commandes</h2>
       <div className="orders-container card-container">
         {isLoading ? (

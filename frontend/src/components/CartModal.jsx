@@ -24,17 +24,17 @@ export default function CartModal({ cartModalState }) {
 
   return (
     <div className={`cart-modal ${cartModalState && "cart-open"}`}>
-      <div className="cart-modal__container">
+      <div className="cart-modal-container">
         {cartState?.map((burger) => (
-          <div className="cart-modal__item" key={burger._id}>
-            <div className="cart-modal__item_img">
+          <div className="cart-modal-item" key={burger._id}>
+            <div className="cart-modal-item-img">
               <img src={burger.food.url} alt={burger.food.name} />
             </div>
-            <div className="cart-modal__item_content">
-              <div className="cart-modal__item_header">
+            <div className="cart-modal-item-content">
+              <div className="cart-modal-item-header">
                 <h3>{burger.food.name}</h3>
                 <AiFillDelete
-                  className="icons delete_cart_item_icon"
+                  className="icons delete-cart-item-icon"
                   onClick={() => deleteFoodFromCartModal(burger.food._id)}
                 />
               </div>

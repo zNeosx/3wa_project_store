@@ -4,8 +4,6 @@
 }
 
 .menu-title{
-//   text-align: center;
-  font-size: 3rem;
   margin-bottom: 1.5rem;
   letter-spacing: 0.05em;
   color: var(--white-color);
@@ -17,8 +15,8 @@
 
 .home-card-subtitle{
   font-weight: 500;
-  font-size: 0.9rem;
   text-transform: uppercase;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
   letter-spacing: 0.05em;
   color: #aaaaaa;
   -webkit-touch-callout: none; /* iOS Safari */
@@ -29,6 +27,9 @@
   user-select: none;
 }
 
+.card-title{
+  word-break: keep-all;
+}
 .home-card:hover .home-card-infos{
   transform: translateY(0%);
 }
@@ -67,6 +68,12 @@
   color: var(--white-color);
   font-weight: 300;
   border-radius: 0 0 15px 15px;
+}
+
+.food-price{
+  font-weight: 600;
+  margin-left: 10px;
+  letter-spacing: 0.05em;
 }
 
 .add-cart-icon{
