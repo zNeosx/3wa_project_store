@@ -8,30 +8,30 @@ export const FoodCard = ({ food, addToCart }) => {
 
   return (
     <div
-      className="card home-card"
+      className="home-burger-card"
       onClick={() => <Navigate to={"food"} state={food} />}
     >
-      <div className="card-header">
-        <p className="home-card-subtitle">{food.base}</p>
-        <h3 className="card-title">{food.name}</h3>
+      <div className="home-burger-card-header">
+        <p className="home-burger-card-subtitle">{food.base}</p>
+        <h3 className="home-burger-card-title">{food.name}</h3>
       </div>
       <div className="home-card-img">
         <img src={food.url} alt={`${food.name}`} />
         <div className="home-card-infos">
-          <p>
-            Ingrédients : <br />
-            {food.ingredients}
-          </p>
+          <p>Ingrédients : {food.ingredients}</p>
         </div>
       </div>
       <div className="home-card-bottom">
-        <span className="food-price">{food.price} €</span>
+        <span className="home-burger-card-price">
+          {food.price} € {food.quantity === 0 && "Rupture de Stock"}
+        </span>
         {cartState?.find((burger) => burger.food._id === food._id) ? (
           <BsCheckCircle className="valid_cart_icon" />
         ) : (
           <IoAddCircleOutline
-            className="add-cart-icon"
+            className="add-to-cart-icon"
             onClick={() => addToCart(food._id)}
+            disabled={food.quantity === 0}
           />
         )}
       </div>

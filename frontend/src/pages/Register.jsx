@@ -103,7 +103,7 @@ const Register = () => {
   };
 
   return (
-    <section id="auth-page">
+    <section className="auth-page">
       <form className="form" onSubmit={handleFormSubmit}>
         <ToastContainer />
         <div className="form-title">
@@ -117,7 +117,7 @@ const Register = () => {
             onChange={handleInputChange}
           />
         ))}
-        <button type="submit" className="btn btn-submit">
+        <button type="submit" className="btn form-btn-submit">
           M'inscrire
         </button>
         <Link to="/login" className="link">

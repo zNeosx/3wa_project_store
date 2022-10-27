@@ -42,6 +42,9 @@ export default function Dashboard() {
 
   return (
     <section id="dashboard" className="page-container">
+      <button className="btn btn-logout" onClick={() => logout()}>
+        Me déconnecter
+      </button>
       <h2>Mes commandes</h2>
       <div className="orders-container card-container">
         {isLoading ? (
@@ -79,9 +82,6 @@ export default function Dashboard() {
           <p>Vous n'avez pas encore passé de commande</p>
         )}
       </div>
-      <button className="btn btn-logout" onClick={() => logout()}>
-        Déconnexion
-      </button>
 
       <Modal
         isOpen={modalIsOpen}

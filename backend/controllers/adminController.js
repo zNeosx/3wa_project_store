@@ -1,5 +1,5 @@
 import { UserModel } from "../models/UserModel.js";
-import { jwtKeySecret } from "../config/index.js";
+import { jwtKeySecret, localServerURL } from "../config/index.js";
 import jwt from "jsonwebtoken";
 import { FoodModel } from "../models/FoodModel.js";
 
@@ -67,7 +67,8 @@ export const adminController = {
     try {
       const food = new FoodModel({
         name: req.body.name,
-        category: req.body.category,
+        base: req.body.base,
+        ingredients: req.body.ingredients,
         price: req.body.price,
         quantity: req.body.quantity,
         url: `${localServerURL}/images/${req.body.alias}`,
@@ -78,6 +79,7 @@ export const adminController = {
         .status(200)
         .json({ message: `${req.body.name} a bien été ajouté !`, foods });
     } catch (error) {
+      console.log(error);
       if (error.errors) {
         res.status(400).json({ error: error.errors });
       } else {
@@ -98,6 +100,21 @@ export const adminController = {
       } else {
         res.status(400).json({ message: error.message });
       }
+    }
+  },
+  updateOneFood: async (req, res) => {
+    try {
+      await FoodModel.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+      });
+      const foods = await FoodModel.find();
+
+      res
+        .status(200)
+        .json({ message: "Le produit a bien été modifié !", foods });
+    } catch (err) {
+      console.log(err.message);
+      res.status(400).json({ message: err.message });
     }
   },
 };

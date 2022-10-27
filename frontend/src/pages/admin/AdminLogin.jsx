@@ -50,7 +50,7 @@ export default function AdminLogin() {
   };
 
   return (
-    <section id="auth-page">
+    <section className="auth-page">
       <form className="form" onSubmit={handleFormSubmit}>
         <ToastContainer />
         <div className="form-title">
@@ -64,7 +64,7 @@ export default function AdminLogin() {
             onChange={handleInputChange}
           />
         ))}
-        <button type="submit" className="btn btn-submit">
+        <button type="submit" className="btn form-btn-submit">
           Me connecter
         </button>
       </form>

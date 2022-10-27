@@ -26,7 +26,7 @@ const NavBar = ({ setCartModalState, cartModalState }) => {
               className={
                 cartState.length === 0 ? "cart-icon" : "cart-icon-active"
               }
-              onClick={() => setCartModalState(!cartModalState)}
+              onClick={() => setCartModalState(true)}
             />
             <span className="cart-count">{cartCount}</span>
           </li>

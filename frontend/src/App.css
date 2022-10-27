@@ -2,6 +2,7 @@
 /* --- GENERAL --- */
 /* --- TYPOGRAPHY --- */
 /* --- DIMENSIONS --- */
+/* --- AUTH PAGE --- */
 /* --- MEDIA QUERY --- */
 
 :root {
@@ -22,6 +23,9 @@
   --navbar-link-color: #352c21;
   --navbar-link-color-active: rgba(245, 71, 73, 0.7);
 
+  --cancel-action-btn-color: #af2525;
+
+  
   --page-width-sm: 90%;
   --page-width-md: 80%;
   --page-width-lg: 70%;
@@ -30,6 +34,7 @@
   --navbar-height: 92px;
 
   --border-radius: 1.3rem;
+  --btn-border-radius: 0.8rem;
 
   --form-width-xl: 530px;
   --form-width-lg: 530px;
@@ -38,45 +43,11 @@
 
 }
 
-/* --- GENERAL --- */
-*,
-::before,
-::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-  list-style: none;
-}
-
-html,
-body,
-#root {
-  height: 100%;
-}
-
-::-webkit-scrollbar {
-  display: none;
-}
-
-html{
-  --res: calc(0.01 * 10vmin);
-}
-
-body {
-  font-family: "Poppins", sans-serif;
-  background: var(--primary-color);
-  overflow-x: hidden;
-}
-
-.App {
-  min-height: 100vh;
-}
-
 /* --- TYPOGRAPHY --- */
 a {
-  font-size: clamp(1.1rem, 3vw, 1.1rem);
+  font-size: clamp(1rem, 3vw, 1.1rem);
   text-decoration: none;
+  transition: all 0.3s ease;
 }
 
 a:hover {
@@ -97,17 +68,94 @@ h3{
 }
 
 span{
-  font-size: clamp(1.1rem, 5vw, 1.3rem);
+  font-size: 1rem;
 }
 
 p{
   font-size: 1rem;
 }
 
+/* --- GENERAL --- */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--primary-color);
+  overflow-x: hidden;
+}
+
+.App {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* .client-layout{
+  overflow-x: hidden;
+} */
+.btn {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 0.5rem;
+  color: var(--white-color);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.08rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: auto;
+}
+
+.link {
+  margin-top: 1rem;
+  color: var(--black-color);
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  color: var(--primary-color);
+}
+
+.page-btn-action-container{
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 0.5rem;
+  height: max-content;
+}
+
+.valid-action-btn{
+  background-color: green;
+}
+
+.cancel-action-btn{
+  background-color: var(--cancel-action-btn-color);
+}
+
+.btn-logout{
+  display: block;
+  width: max-content;
+  margin: 1rem auto;
+  background-color: #535353;
+}
+
 /* --- DIMENSIONS --- */
 
 section {
-  padding: 1rem;
+  padding: 2rem 0.5rem 4rem 0.5rem;
   min-height: calc(100vh - var(--navbar-height));
 }
 
@@ -116,7 +164,9 @@ section {
   margin: 0 auto;
 }
 
-#auth-page{
+/* --- AUTH PAGE --- */
+
+.auth-page{
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -144,6 +194,10 @@ section {
   width: 100%;
   margin: 0.5rem 0;
   word-break: keep-all;
+}
+
+.form-group label{
+  display: none;
 }
 
 .form-group span,
@@ -179,42 +233,9 @@ section {
   display: block;
 }
 
-.btn {
-  width: 100%;
-  padding: 0.8rem;
-  border: none;
-  border-radius: 0.5rem;
-  background: var(--primary-color);
-  color: var(--white-color);
-  font-size: var(--text-fs-sm);
-  font-weight: 500;
-  letter-spacing: 0.08rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-submit {
+.form-btn-submit {
   margin: 0.5rem 0;
-}
-
-.btn:hover {
-  background: var(--primary-color-hover);
-}
-
-.link {
-  margin-top: 1rem;
-  color: var(--black-color);
-  transition: color 0.3s ease;
-}
-
-.link:hover {
-  color: var(--primary-color);
-}
-
-.foods-container{
-  display: grid;
-  gap: 1.5rem;
-
+  background-color: var(--primary-color);
 }
 
 .food-header {
@@ -291,13 +312,22 @@ section {
     width: var(--page-width-md);
   }
 
-  .foods-container{
+  .home-burgers-container{
     grid-template-columns: repeat(2, 1fr);
   }
 
   .icons{
     width: 30px;
     height: 30px;
+  }
+
+  .valid-action-btn, .cancel-action-btn{
+    width: max-content;
+  }
+
+  .page-btn-action-container{
+    flex-direction: row;
+    justify-content: center;
   }
 }
 
@@ -308,7 +338,7 @@ section {
 }
 
 @media screen and (min-width: 1200px) {
-  .foods-container{
+  .home-burgers-container{
     grid-template-columns: repeat(3, 1fr);
   }
 }

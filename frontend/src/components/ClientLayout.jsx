@@ -59,7 +59,10 @@ const ClientLayout = ({ setIsLoading, setFoods }) => {
         setCartModalState={setCartModalState}
         cartModalState={cartModalState}
       />
-      <CartModal cartModalState={cartModalState} />
+      <CartModal
+        cartModalState={cartModalState}
+        setCartModalState={setCartModalState}
+      />
       <Outlet />
     </div>
   );

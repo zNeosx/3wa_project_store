@@ -165,4 +165,11 @@ export const adminRequest = {
       },
     });
   },
+  updateOneFood: (id, form) => {
+    return Axios.patch(`/admin/foods/updateOne/${id}`, form, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    });
+  },
 };

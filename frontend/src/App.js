@@ -1,6 +1,5 @@
 import "./App.css";
 import "./assets/scss/style.scss";
-import "./assets/scss/register.scss";
 import "./assets/scss/navbar.scss";
 import "./assets/scss/home.scss";
 import "./assets/scss/dashboard.scss";
@@ -26,6 +25,7 @@ import AdminLayout from "./components/AdminLayout";
 import AdminRoutes from "./components/AdminRoutes";
 import AdminUsers from "./pages/admin/AdminUsers";
 import AdminFoods from "./pages/admin/AdminFoods";
+import UpdatePostPage from "./pages/UpdatePostPage";
 
 function App() {
   const [foods, setFoods] = useState([]);
@@ -48,7 +48,6 @@ function App() {
               />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="add_food" element={<AddFoodPage />} />
-              {/* <Route path="update_post/:id" element={<UpdatePostPage />} /> */}
               <Route path="food" element={<Food />} />
               <Route path="cart" element={<Cart />} />
               <Route path="order" element={<Order />} />
@@ -62,6 +61,8 @@ function App() {
             <Route path="/admin/" element={<AdminLayout />}>
               <Route path="users" element={<AdminUsers />} />
               <Route path="foods" element={<AdminFoods />} />
+              <Route path="foods/add" element={<AddFoodPage />} />
+              <Route path="foods/update" element={<UpdatePostPage />} />
             </Route>
           </Route>
         </Routes>

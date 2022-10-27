@@ -102,15 +102,23 @@ export default function Cart() {
         </div>
         <div className="cart-price-container">
           <h2>Total</h2>
-          <p>{cartPrice} €</p>
+          <span>{cartPrice} €</span>
         </div>
-        <button
-          className="btn payment-btn"
-          onClick={() => navigate("/order")}
-          disabled={cartState?.length === 0}
-        >
-          Valider mon panier
-        </button>
+        <div className="page-btn-action-container">
+          <button
+            className="btn valid-action-btn"
+            onClick={() => navigate("/order")}
+            disabled={cartState?.length === 0}
+          >
+            Valider mon panier
+          </button>
+          <button
+            className="btn cancel-action-btn"
+            onClick={() => navigate("/")}
+          >
+            Revenir à l'accueil
+          </button>
+        </div>
       </div>
     </section>
   );

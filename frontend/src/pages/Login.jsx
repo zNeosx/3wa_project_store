@@ -66,7 +66,7 @@ const Login = () => {
   };
 
   return (
-    <section id="auth-page">
+    <section className="auth-page">
       <form className="form" onSubmit={handleFormSubmit}>
         <ToastContainer />
         <div className="form-title">
@@ -80,7 +80,7 @@ const Login = () => {
             onChange={handleInputChange}
           />
         ))}
-        <button type="submit" className="btn btn-submit">
+        <button type="submit" className="btn form-btn-submit">
           Me connecter
         </button>
         <Link to="/register" className="link">

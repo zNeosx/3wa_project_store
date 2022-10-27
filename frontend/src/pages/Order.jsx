@@ -41,20 +41,20 @@ export default function Order() {
   return (
     <section id="order-page">
       <div className="page-container cart-container">
-        <div className="cart__item__container">
+        <div className="cart-item-container">
           <h1>Ma commande</h1>
           {cartState?.length > 0 ? (
             cartState?.map((burger) => (
-              <div className="cart__item" key={burger._id}>
-                <div className="cart__item_img">
+              <div className="cart-item" key={burger._id}>
+                <div className="cart-item-img">
                   <img src={burger.food.url} alt={burger.food.name} />
                 </div>
-                <div className="cart__item_content">
-                  <div className="cart__item_header">
+                <div className="cart-item-content">
+                  <div className="cart-item-header">
                     <h3>{burger.food.name}</h3>
                   </div>
                   <p>Prix unitaire : {burger.food.price} €</p>
-                  <span className="quantity__number">
+                  <span className="quantity-number">
                     Quantité : {burger.quantity}
                   </span>
                 </div>
@@ -64,17 +64,25 @@ export default function Order() {
             <h2>Aucun commande à passer, ton panier est vide.</h2>
           )}
         </div>
-        <div className="cart_price__container">
+        <div className="cart-price-container">
           <h2>Prix total :</h2>
           <p>{cartPrice} €</p>
         </div>
-        <button
-          className="btn payment-btn"
-          onClick={() => placeOrder(cartPrice)}
-          disabled={cartState?.length === 0}
-        >
-          Valider ma commande
-        </button>
+        <div className="page-btn-action-container">
+          <button
+            className="btn valid-action-btn"
+            onClick={() => placeOrder(cartPrice)}
+            disabled={cartState?.length === 0}
+          >
+            Valider ma commande
+          </button>
+          <button
+            className="btn cancel-action-btn"
+            onClick={() => navigate("/cart")}
+          >
+            Revenir au panier
+          </button>
+        </div>
       </div>
     </section>
   );

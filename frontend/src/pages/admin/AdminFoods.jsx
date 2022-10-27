@@ -1,10 +1,12 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { adminRequest } from "../../api";
 import { initFoodState } from "../../features/adminSlice";
 
 export default function AdminFoods() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const foods = useSelector((state) => state.admin.foods);
 
@@ -23,6 +25,9 @@ export default function AdminFoods() {
   return (
     <section className="admin-foods">
       <h2 className="a__page_title">Burgers récents</h2>
+      <Link to="add" className="a-add-food-link">
+        Ajouter un burger
+      </Link>
       <div className="a__foods_container">
         {foods?.map((food, index) => (
           <div className="a__food_card" key={index}>
@@ -32,7 +37,12 @@ export default function AdminFoods() {
               <span className="a__food_base">{food.base}</span>
             </div>
             <div className="a__btn_actions">
-              <button className="btn_action_update">modifier</button>
+              <button
+                className="btn_action_update"
+                onClick={() => navigate("update", { state: food })}
+              >
+                modifier
+              </button>
               <button
                 className="btn_action_delete"
                 onClick={() => deleteOneFood(food._id)}

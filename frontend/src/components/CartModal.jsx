@@ -2,10 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { AiFillDelete } from "react-icons/ai";
+import { IoMdClose } from "react-icons/io";
 import { cartRequest } from "../api";
 import { init } from "../features/cartSlice";
 
-export default function CartModal({ cartModalState }) {
+export default function CartModal({ cartModalState, setCartModalState }) {
   const cartState = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,7 +24,17 @@ export default function CartModal({ cartModalState }) {
   };
 
   return (
-    <div className={`cart-modal ${cartModalState && "cart-open"}`}>
+    <div
+      className={`${cartModalState ? "cart-modal cart-open" : "cart-modal"}`}
+    >
+      <div className="cart-modal-header">
+        <IoMdClose
+          className="close-icon"
+          onClick={() => {
+            setCartModalState(false);
+          }}
+        />
+      </div>
       <div className="cart-modal-container">
         {cartState?.map((burger) => (
           <div className="cart-modal-item" key={burger._id}>
@@ -43,9 +54,14 @@ export default function CartModal({ cartModalState }) {
           </div>
         ))}
       </div>
-      <button className="btn payment-btn" onClick={() => navigate("/cart")}>
-        Accéder au panier
-      </button>
+      <div className="page-btn-action-container">
+        <button
+          className="btn valid-action-btn"
+          onClick={() => navigate("/cart")}
+        >
+          Accéder au panier
+        </button>
+      </div>
     </div>
   );
 }

@@ -23,7 +23,7 @@ const Home = ({ isLoading, foods }) => {
   return (
     <section id="home">
       <h2 className="menu-title page-container">Nos Burgers</h2>
-      <div className="foods-container page-container">
+      <div className="home-burgers-container page-container">
         {isLoading ? (
           <FoodCardSkeleton cards={8} />
         ) : (

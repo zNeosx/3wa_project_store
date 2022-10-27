@@ -23,6 +23,10 @@ router.delete(
   auth.checkAdmin,
   adminController.deleteOneFood
 );
-// router.get("/users/:id", auth.checkAdmin, adminController.getUser);
+router.patch(
+  "/foods/updateOne/:id",
+  auth.checkAdmin,
+  adminController.updateOneFood
+);
 
 export default router;
