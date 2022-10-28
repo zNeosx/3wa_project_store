@@ -19,6 +19,7 @@ export default function Cart() {
         dispatch(init(res.data.cart.foods));
         toast.success(res.data.message, {
           position: "top-center",
+          autoClose: 2000,
         });
       })
       .catch((err) => console.log(err));
@@ -29,9 +30,9 @@ export default function Cart() {
       .incrementOne(foodId)
       .then((res) => {
         dispatch(init(res.data.cart.foods));
-        toast.success(res.data.message, {
-          position: "top-center",
-        });
+        // toast.success(res.data.message, {
+        //   position: "top-center",
+        // });
       })
       .catch((err) => console.log(err));
   };
@@ -40,9 +41,9 @@ export default function Cart() {
       .decrementOne(foodId)
       .then((res) => {
         dispatch(init(res.data.cart.foods));
-        toast.success(res.data.message, {
-          position: "top-center",
-        });
+        // toast.success(res.data.message, {
+        //   position: "top-center",
+        // });
       })
       .catch((err) => console.log(err));
   };

@@ -118,22 +118,9 @@ export default function AddFoodPage() {
             className="form-input"
           />
         </div>
-
-        <div className="form-group">
-          <label htmlFor="name">Alias du burger</label>
-          <input
-            type="text"
-            name="alias"
-            placeholder="Alias du burger"
-            required
-            value={form.alias}
-            onChange={handleInputChange}
-            className="form-input"
-          />
-        </div>
         <div className="page-btn-action-container">
           <button className="btn valid-action-btn" type="submit">
-            Modifier
+            Ajouter
           </button>
           <button
             className="btn cancel-action-btn"

@@ -1,5 +1,4 @@
 import "./App.css";
-import "./assets/scss/style.scss";
 import "./assets/scss/navbar.scss";
 import "./assets/scss/home.scss";
 import "./assets/scss/dashboard.scss";
@@ -35,13 +34,13 @@ function App() {
     <div className="App">
       <SkeletonTheme baseColor="#c2cfd6" highlightColor="#f0f3f5">
         <Routes>
-          <Route
-            path="/"
-            element={
-              <ClientLayout setFoods={setFoods} setIsLoading={setIsLoading} />
-            }
-          >
-            <Route element={<PrivateRoutes />}>
+          <Route element={<PrivateRoutes />}>
+            <Route
+              path="/"
+              element={
+                <ClientLayout setFoods={setFoods} setIsLoading={setIsLoading} />
+              }
+            >
               <Route
                 index
                 element={<Home foods={foods} isLoading={isLoading} />}

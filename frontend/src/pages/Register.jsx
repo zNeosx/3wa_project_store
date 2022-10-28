@@ -57,7 +57,7 @@ const Register = () => {
       name: "email",
       type: "email",
       placeholder: "Adresse e-mail*",
-      errorMessage: "Ton e-mail n'est pas valide.",
+      errorMessage: "Ton adresse e-mail n'est pas valide.",
       label: "Email",
       required: true,
     },
@@ -85,19 +85,19 @@ const Register = () => {
     authRequest
       .register(form)
       .then(({ data }) => {
-        navigate("/login");
-        // toast.success("Inscription réussie !", {
-        //   autoClose: 5000,
-        //   transition: "Slide",
-        //   onClose: () => navigate("/login"),
-        // });
+        toast.success("Inscription réussie !", {
+          position: "top-center",
+          autoClose: 2000,
+        });
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
       })
       .catch(({ response: { data } }) => {
         console.log(data.message);
-        toast.error(data.errors, {
-          margin: "60px",
+        toast.error(data.message, {
           position: "top-center",
-          autoClose: 5000,
+          autoClose: 3000,
         });
       });
   };

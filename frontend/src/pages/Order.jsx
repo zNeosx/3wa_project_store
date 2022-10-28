@@ -25,7 +25,7 @@ export default function Order() {
         setCartPrice(0);
         toast.success(res.data.message, {
           position: "top-center",
-          autoClose: 3000,
+          autoClose: 2000,
         });
         setTimeout(() => {
           navigate("/");

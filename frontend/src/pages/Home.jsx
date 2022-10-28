@@ -16,6 +16,7 @@ const Home = ({ isLoading, foods }) => {
         dispatch(init(res.data.cart.foods));
         toast.success(res.data.message, {
           position: "top-center",
+          autoClose: 2000,
         });
       })
       .catch((err) => console.log(err));

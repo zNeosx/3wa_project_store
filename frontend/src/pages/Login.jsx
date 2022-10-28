@@ -58,9 +58,8 @@ const Login = () => {
       })
       .catch(({ response: { data } }) => {
         toast.error(data.message, {
-          margin: "60px",
-          position: "top-right",
-          autoClose: 5000,
+          position: "top-center",
+          autoClose: 3000,
         });
       });
   };

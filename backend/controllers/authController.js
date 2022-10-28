@@ -11,14 +11,16 @@ export const authController = {
         password: crypto.SHA1(req.body.password).toString(),
       });
       await user.save();
-      res.status(200).json(user);
+      res.status(200).json({ user, message: "Inscription réussie !" });
     } catch (errors) {
       if (errors.keyPattern.username) {
-        res.status(400).json({ errors: "Ce pseudo est déjà utilisé." });
+        res.status(400).json({ message: "Ce pseudo est déjà utilisé." });
       } else if (errors.keyPattern.email) {
-        res.status(400).json({ errors: "Cet email est déjà utilisé." });
+        res
+          .status(400)
+          .json({ message: "Cette adresse email est déjà utilisée." });
       } else {
-        res.status(400).json({ errors: errors.errors });
+        res.status(400).json({ message: errors.errors });
       }
       console.log(errors);
     }
@@ -55,7 +57,7 @@ export const authController = {
       } else {
         res.status(400).json({
           field: "email",
-          message: "Aucun compte lié à cet adresse email.",
+          message: "Aucun compte lié à cette adresse email.",
         });
       }
     } catch (error) {

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
+import { Navigate, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { orderRequest } from "../api";
 import { OrderCardSkeleton } from "../components/OrderCardSkeleton";
 
@@ -15,6 +17,7 @@ const customStyles = {
 };
 
 export default function Dashboard() {
+  const navigate = useNavigate();
   const [modalIsOpen, setIsOpen] = useState(false);
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -33,7 +36,13 @@ export default function Dashboard() {
 
   const logout = () => {
     sessionStorage.clear();
-    window.location.href = "/";
+    toast.success("Vous êtes déconnecté", {
+      position: "top-center",
+      autoClose: 1000,
+    });
+    setTimeout(() => {
+      navigate("/login");
+    }, 2000);
   };
 
   useEffect(() => {
