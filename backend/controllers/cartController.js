@@ -137,16 +137,23 @@ export const cartController = {
           name: 1,
         }
       );
-      //   const foodChartQuantity = await CartModel.findOne(
-      //     {
-      //       userId: req.session.user._id,
-      //       "foods.food": req.body.foodId,
-      //     },
-      //     {
-      //       "foods.quantity": 1,
-      //     }
-      //   );
-      //   console.log(foodChartQuantity);
+      const cart = await CartModel.findOne({
+        userId: req.session.user._id,
+        "foods.food": req.params.foodId,
+      });
+      const foodIndex = cart.foods.filter(
+        (item) => item.food == req.params.foodId
+      );
+      await FoodModel.updateOne(
+        {
+          _id: req.params.foodId,
+        },
+        {
+          $inc: {
+            quantity: foodIndex[0].quantity,
+          },
+        }
+      );
       await CartModel.updateOne(
         {
           userId: req.session.user._id,
