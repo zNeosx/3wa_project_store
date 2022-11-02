@@ -11,7 +11,6 @@ export const auth = {
           console.log(err.message);
           res.status(401).json({ message: err.message });
         } else {
-          //   console.log(decodedToken);
           let user = await UserModel.findById(decodedToken.id);
           req.session.user = {
             _id: user._id,

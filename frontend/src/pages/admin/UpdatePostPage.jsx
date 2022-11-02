@@ -1,23 +1,23 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { adminRequest } from "../api";
-import { initFoodState } from "../features/adminSlice";
+import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { adminRequest } from "../../api";
+import { initFoodState } from "../../features/adminSlice";
 
-export default function AddFoodPage() {
+export default function UpdatePostPage() {
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
 
-  const foods = useSelector((state) => state.admin.foods);
-
   const [form, setForm] = React.useState({
-    name: "",
-    base: "",
-    ingredients: "",
-    price: "",
-    quantity: "",
-    alias: "",
+    name: location.state.name,
+    base: location.state.base,
+    ingredients: location.state.ingredients,
+    price: location.state.price,
+    quantity: location.state.quantity,
+    alias: location.state.url.split("/").slice(-1)[0],
   });
 
   const handleInputChange = (e) => {
@@ -29,7 +29,7 @@ export default function AddFoodPage() {
     e.preventDefault();
 
     adminRequest
-      .addOneFood(form)
+      .updateOneFood(location.state._id, form)
       .then((res) => {
         dispatch(initFoodState(res.data.foods));
         toast.success(res.data.message);
@@ -37,14 +37,16 @@ export default function AddFoodPage() {
       })
       .catch((err) => {
         toast.error(err.message);
+        console.log(err.message);
       });
   };
 
   return (
     <section className="auth-page">
       <form className="form" onSubmit={handleFormSubmit}>
+        <ToastContainer />
         <div className="form-title">
-          <h1>Ajouter un burger</h1>
+          <h1>Modifier</h1>
         </div>
         <div className="form-group">
           <label htmlFor="name">Nom du burger</label>
@@ -120,7 +122,7 @@ export default function AddFoodPage() {
         </div>
         <div className="page-btn-action-container">
           <button className="btn valid-action-btn" type="submit">
-            Ajouter
+            Modifier
           </button>
           <button
             className="btn cancel-action-btn"

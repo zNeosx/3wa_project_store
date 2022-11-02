@@ -1,23 +1,21 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { adminRequest } from "../api";
-import { initFoodState } from "../features/adminSlice";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { adminRequest } from "../../api";
+import { initFoodState } from "../../features/adminSlice";
 
-export default function UpdatePostPage() {
+export default function AddFoodPage() {
   const navigate = useNavigate();
-  const location = useLocation();
   const dispatch = useDispatch();
 
   const [form, setForm] = React.useState({
-    name: location.state.name,
-    base: location.state.base,
-    ingredients: location.state.ingredients,
-    price: location.state.price,
-    quantity: location.state.quantity,
-    alias: location.state.url.split("/").slice(-1)[0],
+    name: "",
+    base: "",
+    ingredients: "",
+    price: "",
+    quantity: "",
+    alias: "",
   });
 
   const handleInputChange = (e) => {
@@ -29,7 +27,7 @@ export default function UpdatePostPage() {
     e.preventDefault();
 
     adminRequest
-      .updateOneFood(location.state._id, form)
+      .addOneFood(form)
       .then((res) => {
         dispatch(initFoodState(res.data.foods));
         toast.success(res.data.message);
@@ -37,16 +35,14 @@ export default function UpdatePostPage() {
       })
       .catch((err) => {
         toast.error(err.message);
-        console.log(err.message);
       });
   };
 
   return (
     <section className="auth-page">
       <form className="form" onSubmit={handleFormSubmit}>
-        <ToastContainer />
         <div className="form-title">
-          <h1>Modifier</h1>
+          <h1>Ajouter un burger</h1>
         </div>
         <div className="form-group">
           <label htmlFor="name">Nom du burger</label>
@@ -122,7 +118,7 @@ export default function UpdatePostPage() {
         </div>
         <div className="page-btn-action-container">
           <button className="btn valid-action-btn" type="submit">
-            Modifier
+            Ajouter
           </button>
           <button
             className="btn cancel-action-btn"

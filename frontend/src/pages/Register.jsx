@@ -84,7 +84,7 @@ const Register = () => {
 
     authRequest
       .register(form)
-      .then(({ data }) => {
+      .then(() => {
         toast.success("Inscription réussie !", {
           position: "top-center",
           autoClose: 2000,
@@ -94,7 +94,6 @@ const Register = () => {
         }, 2000);
       })
       .catch(({ response: { data } }) => {
-        console.log(data.message);
         toast.error(data.message, {
           position: "top-center",
           autoClose: 3000,

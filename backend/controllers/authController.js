@@ -43,7 +43,8 @@ export const authController = {
             { expiresIn: "24h" },
             (err, token) => {
               if (err) {
-                res.status(400).json(err);
+                console.log("jwt error :", err);
+                res.status(400).json({ message: err });
               }
               res.status(200).json({ token });
             }

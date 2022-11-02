@@ -1,5 +1,3 @@
-// export const foodRequest = {
-
 import { Axios } from "../config";
 
 export const authRequest = {
@@ -51,7 +49,7 @@ export const foodsRequest = {
 
 export const cartRequest = {
   getOne: () => {
-    return Axios.get("/chart/getOne", {
+    return Axios.get("/cart/getOne", {
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       },
@@ -59,7 +57,7 @@ export const cartRequest = {
   },
   addOne: (id) => {
     return Axios.post(
-      "/chart/addOne",
+      "/cart/addOne",
       {
         foodId: id,
       },
@@ -71,7 +69,7 @@ export const cartRequest = {
     );
   },
   deleteFoodFromCart: (id) => {
-    return Axios.delete(`/chart/deleteFoodFromCart/${id}`, {
+    return Axios.delete(`/cart/deleteFoodFromCart/${id}`, {
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       },
@@ -79,7 +77,7 @@ export const cartRequest = {
   },
   incrementOne: (id) => {
     return Axios.patch(
-      `/chart/incrementOne`,
+      `/cart/incrementOne`,
       {
         foodId: id,
       },
@@ -92,7 +90,7 @@ export const cartRequest = {
   },
   decrementOne: (id) => {
     return Axios.patch(
-      `/chart/decrementOne`,
+      `/cart/decrementOne`,
       {
         foodId: id,
       },

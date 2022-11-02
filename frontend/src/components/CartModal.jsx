@@ -28,12 +28,14 @@ export default function CartModal({ cartModalState, setCartModalState }) {
       className={`${cartModalState ? "cart-modal cart-open" : "cart-modal"}`}
     >
       <div className="cart-modal-header">
-        <IoMdClose
-          className="close-icon"
-          onClick={() => {
-            setCartModalState(false);
-          }}
-        />
+        <button>
+          <IoMdClose
+            className="close-icon"
+            onClick={() => {
+              setCartModalState(false);
+            }}
+          />
+        </button>
       </div>
       <div className="cart-modal-container">
         {cartState?.map((burger) => (
@@ -44,10 +46,12 @@ export default function CartModal({ cartModalState, setCartModalState }) {
             <div className="cart-modal-item-content">
               <div className="cart-modal-item-header">
                 <h3>{burger.food.name}</h3>
-                <AiFillDelete
-                  className="icons delete-cart-item-icon"
-                  onClick={() => deleteFoodFromCartModal(burger.food._id)}
-                />
+                <button>
+                  <AiFillDelete
+                    className="icons delete-cart-item-icon"
+                    onClick={() => deleteFoodFromCartModal(burger.food._id)}
+                  />
+                </button>
               </div>
               <p>{burger.food.price} €</p>
             </div>

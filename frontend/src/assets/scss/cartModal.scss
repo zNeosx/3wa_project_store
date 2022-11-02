@@ -46,15 +46,15 @@ body:has(> .cart-open){
     align-items: center;
     padding: 0.5rem;
 
-    &::after{
-        content: "";
-        position: absolute;
-        top: 100%;
-        left: 10%;
-        width: 80%;
-        height: 2px;
-        background-color: #000;
-    }
+    // &::after{
+    //     content: "";
+    //     position: absolute;
+    //     top: 100%;
+    //     left: 10%;
+    //     width: 80%;
+    //     height: 2px;
+    //     background-color: #000;
+    // }
 }
 
 .cart-modal-item-img{

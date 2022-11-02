@@ -8,20 +8,20 @@
 :root {
   --body-color: linear-gradient(
     180deg,
-    rgba(238, 174, 202, 1) 0%,
-    rgba(148, 187, 233, 1) 100%
+    #eeaeca 0%,
+    #94bbe9 100%
   );
   --white-color: #f1f1f1;
   --black-color: #1b1b1c;
   --blue-color: #03506F;
-  --primary-color: rgb(245, 71, 74);
-  --primary-color-hover: rgba(245, 71, 73, 0.9);
+  --primary-color: #f5474a;
+  --primary-color-hover: #f54749e6;
 
   --error-message-color: red;
   --success-message-color: green;
 
   --navbar-link-color: #352c21;
-  --navbar-link-color-active: rgba(245, 71, 73, 0.7);
+  --navbar-link-color-active: #f54749b3;
 
   --cancel-action-btn-color: #af2525;
 
@@ -105,6 +105,17 @@ body {
 /* .client-layout{
   overflow-x: hidden;
 } */
+button{
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: none;
+}
+
+button:disabled{
+  cursor: not-allowed;
+  background-color: #535353;
+}
 .btn {
   width: 100%;
   padding: 0.8rem;

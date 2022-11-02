@@ -4,16 +4,21 @@ import { useSelector } from "react-redux";
 import Avatar, { genConfig } from "react-nice-avatar";
 import { BsFillBagCheckFill } from "react-icons/bs";
 
-const NavBar = ({ setCartModalState, cartModalState }) => {
+export default function NavBar({ setCartModalState, cartModalState }) {
+  // INITIALISATION DES VARIABLES D'ÉTAT
   const cartState = useSelector((state) => state.cart.cart);
   const [cartCount, setCartCount] = useState(cartState.length);
+
+  // RÉCUPERE LA CONFIG DE L'AVATAR
   const config = genConfig(
     JSON.parse(sessionStorage.getItem("avatar") || "{}")
   );
 
+  // () => INCREMENTER LA QUANTITE DE PRODUIT DANS LE PANIER
   useEffect(() => {
     setCartCount(cartState.length);
   }, [cartState]);
+
   return (
     <nav id="nav">
       <div className="nav-container page-container">
@@ -39,6 +44,4 @@ const NavBar = ({ setCartModalState, cartModalState }) => {
       </div>
     </nav>
   );
-};
-
-export default NavBar;
+}

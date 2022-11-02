@@ -1,10 +1,10 @@
-import { ChartModel } from "../models/ChartModel.js";
+import { CartModel } from "../models/CartModel.js";
 import { FoodModel } from "../models/FoodModel.js";
 
-export const chartController = {
+export const cartController = {
   getOne: async (req, res) => {
     try {
-      const cart = await ChartModel.findOne(
+      const cart = await CartModel.findOne(
         {
           userId: req.session.user._id,
         },
@@ -18,7 +18,7 @@ export const chartController = {
         });
       } else {
         if (cart.foods.length === 0) {
-          await ChartModel.deleteOne({
+          await CartModel.deleteOne({
             userId: req.session.user._id,
           });
           res.status(200).json({
@@ -35,11 +35,11 @@ export const chartController = {
   },
   addOne: async (req, res) => {
     try {
-      const userCart = await ChartModel.findOne({
+      const userCart = await CartModel.findOne({
         userId: req.session.user._id,
       });
       if (!userCart) {
-        const newCart = new ChartModel({
+        const newCart = new CartModel({
           userId: req.session.user._id,
           foods: [
             {
@@ -67,7 +67,7 @@ export const chartController = {
             name: 1,
           }
         );
-        const cart = await ChartModel.findOne(
+        const cart = await CartModel.findOne(
           {
             userId: req.session.user._id,
           },
@@ -79,7 +79,7 @@ export const chartController = {
           .status(200)
           .json({ message: `${food.name} a bien été ajouté du panier`, cart });
       } else {
-        await ChartModel.updateOne(
+        await CartModel.updateOne(
           {
             userId: req.session.user._id,
           },
@@ -110,7 +110,7 @@ export const chartController = {
             name: 1,
           }
         );
-        const cart = await ChartModel.findOne(
+        const cart = await CartModel.findOne(
           {
             userId: req.session.user._id,
           },
@@ -137,7 +137,7 @@ export const chartController = {
           name: 1,
         }
       );
-      //   const foodChartQuantity = await ChartModel.findOne(
+      //   const foodChartQuantity = await CartModel.findOne(
       //     {
       //       userId: req.session.user._id,
       //       "foods.food": req.body.foodId,
@@ -147,7 +147,7 @@ export const chartController = {
       //     }
       //   );
       //   console.log(foodChartQuantity);
-      await ChartModel.updateOne(
+      await CartModel.updateOne(
         {
           userId: req.session.user._id,
         },
@@ -159,7 +159,7 @@ export const chartController = {
           },
         }
       );
-      const cartUpdated = await ChartModel.findOne(
+      const cartUpdated = await CartModel.findOne(
         {
           userId: req.session.user._id,
         },
@@ -178,7 +178,7 @@ export const chartController = {
   },
   incrementOne: async (req, res) => {
     try {
-      await ChartModel.updateOne(
+      await CartModel.updateOne(
         {
           userId: req.session.user._id,
           "foods.food": req.body.foodId,
@@ -199,7 +199,7 @@ export const chartController = {
           },
         }
       );
-      const cart = await ChartModel.findOne(
+      const cart = await CartModel.findOne(
         {
           userId: req.session.user._id,
         },
@@ -214,7 +214,7 @@ export const chartController = {
   },
   decrementOne: async (req, res) => {
     try {
-      await ChartModel.updateOne(
+      await CartModel.updateOne(
         {
           userId: req.session.user._id,
           "foods.food": req.body.foodId,
@@ -235,7 +235,7 @@ export const chartController = {
           },
         }
       );
-      const cart = await ChartModel.findOne(
+      const cart = await CartModel.findOne(
         {
           userId: req.session.user._id,
         },

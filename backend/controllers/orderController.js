@@ -1,10 +1,10 @@
-import { ChartModel } from "../models/ChartModel.js";
+import { CartModel } from "../models/CartModel.js";
 import { OrderModel } from "../models/OrderModel.js";
 
 export const orderController = {
   addOne: async (req, res) => {
     try {
-      const userCart = await ChartModel.findOne({
+      const userCart = await CartModel.findOne({
         userId: req.session.user._id,
       });
       if (!userCart) {
@@ -16,7 +16,7 @@ export const orderController = {
           price: req.body.price,
         });
         await newOrder.save();
-        await ChartModel.deleteOne({
+        await CartModel.deleteOne({
           userId: req.session.user._id,
         });
         res.status(200).json({

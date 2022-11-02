@@ -1,27 +1,17 @@
 import { useEffect, useState } from "react";
-import Modal from "react-modal";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { orderRequest } from "../api";
 import { OrderCardSkeleton } from "../components/OrderCardSkeleton";
-
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-};
+import Moment from "moment";
 
 export default function Dashboard() {
   const navigate = useNavigate();
-  const [modalIsOpen, setIsOpen] = useState(false);
+  // INITIALISATION DES VARIABLES D'ÉTAT
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  // () => RÉCUPERE LES COMMANDES DE L'UTILISATEUR
   const getUserOrders = async () => {
     orderRequest
       .getUserOrders()
@@ -34,6 +24,7 @@ export default function Dashboard() {
       });
   };
 
+  // () => DÉCONNEXION
   const logout = () => {
     sessionStorage.clear();
     toast.success("Vous êtes déconnecté", {
@@ -59,11 +50,13 @@ export default function Dashboard() {
         {isLoading ? (
           <OrderCardSkeleton cards={3} />
         ) : orders.length !== 0 ? (
-          orders?.map((order) => (
+          orders?.map((order, index) => (
             <div className="card" key={order._id}>
               <div className="card-header">
-                <h3 className="card-title">Commande N° {order._id}</h3>
-                <p className="card-subtitle">Du {order.createdAt}</p>
+                <h3 className="card-title">Commande N° {index + order._id}</h3>
+                <p className="card-subtitle">
+                  Du {Moment(order.createdAt).format("DD/MM/YYYY")}
+                </p>
               </div>
               <div className="order-burger-container">
                 {order.foods.map((item, index) => (
@@ -91,15 +84,6 @@ export default function Dashboard() {
           <p>Vous n'avez pas encore passé de commande</p>
         )}
       </div>
-
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={() => setIsOpen(false)}
-        style={customStyles}
-        contentLabel="Example Modal"
-      >
-        <h2>Confirmation</h2>
-      </Modal>
     </section>
   );
 }

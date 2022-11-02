@@ -8,15 +8,19 @@ import { orderRequest } from "../api";
 export default function Order() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  // INITIALISATION DES VARIABLES D'ÉTAT
   const cartState = useSelector((state) => state.cart.cart);
   const [cartPrice, setCartPrice] = useState(0);
 
+  // () => CALCULE LE PRIX TOTAL DU PANIER
   const calculateCartPrice = () => {
     let price = 0;
     cartState?.map((burger) => (price += burger.food.price * burger.quantity));
     setCartPrice(price);
   };
 
+  // () => VALIDER LA COMMANDE
   const placeOrder = (price) => {
     orderRequest
       .addOne(price)
@@ -34,6 +38,7 @@ export default function Order() {
       .catch((err) => console.log(err));
   };
 
+  // () => LANCE LA FONCTION calculateCartPrice()
   useEffect(() => {
     calculateCartPrice();
   }, []);
@@ -61,11 +66,11 @@ export default function Order() {
               </div>
             ))
           ) : (
-            <h2>Aucun commande à passer, ton panier est vide.</h2>
+            <h3>Aucun commande à passer, ton panier est vide.</h3>
           )}
         </div>
         <div className="cart-price-container">
-          <h2>Prix total :</h2>
+          <h3>Prix total :</h3>
           <p>{cartPrice} €</p>
         </div>
         <div className="page-btn-action-container">

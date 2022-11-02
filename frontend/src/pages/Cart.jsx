@@ -9,10 +9,13 @@ import { cartRequest } from "../api";
 export default function Cart() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  // INITIALISATION DES VARIABLES D'ÉTAT
   const [cartPrice, setCartPrice] = useState(0);
   const cartState = useSelector((state) => state.cart.cart);
 
-  const deleteFoodFromCartModal = (id) => {
+  // () => SUPPRIMER UN PRODUIT DU PANIER
+  const deleteFoodFromCart = (id) => {
     cartRequest
       .deleteFoodFromCart(id)
       .then((res) => {
@@ -25,34 +28,33 @@ export default function Cart() {
       .catch((err) => console.log(err));
   };
 
+  // () => INCREMENTER LA QUANTITÉ D'UN PRODUIT DU PANIER
   const incrementQty = (foodId) => {
     cartRequest
       .incrementOne(foodId)
       .then((res) => {
         dispatch(init(res.data.cart.foods));
-        // toast.success(res.data.message, {
-        //   position: "top-center",
-        // });
       })
       .catch((err) => console.log(err));
   };
+
+  // () => DECREMENTER LA QUANTITÉ D'UN PRODUIT DU PANIER
   const decrementQty = (foodId) => {
     cartRequest
       .decrementOne(foodId)
       .then((res) => {
         dispatch(init(res.data.cart.foods));
-        // toast.success(res.data.message, {
-        //   position: "top-center",
-        // });
       })
       .catch((err) => console.log(err));
   };
 
+  // () => CALCULE LE PRIX TOTAL DU PANIER
   const calculateCartPrice = () => {
     let price = 0;
     cartState?.map((burger) => (price += burger.food.price * burger.quantity));
     setCartPrice(price);
   };
+
   useEffect(() => {
     calculateCartPrice();
   }, [cartState]);
@@ -71,10 +73,12 @@ export default function Cart() {
                 <div className="cart-item-content">
                   <div className="cart-item-header">
                     <h3>{burger.food.name}</h3>
-                    <AiFillDelete
-                      className="icons delete-cart-item-icon"
-                      onClick={() => deleteFoodFromCartModal(burger.food._id)}
-                    />
+                    <button>
+                      <AiFillDelete
+                        className="icons delete-cart-item-icon"
+                        onClick={() => deleteFoodFromCart(burger.food._id)}
+                      />
+                    </button>
                   </div>
                   <p>{burger.food.price} €</p>
                   <div className="quantity-management">
@@ -98,11 +102,11 @@ export default function Cart() {
               </div>
             ))
           ) : (
-            <h2>Ton panier est vite</h2>
+            <h3>Ton panier est vide</h3>
           )}
         </div>
         <div className="cart-price-container">
-          <h2>Total</h2>
+          <h3>Total</h3>
           <span>{cartPrice} €</span>
         </div>
         <div className="page-btn-action-container">

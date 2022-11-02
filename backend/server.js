@@ -11,9 +11,8 @@ import { port, hostname, localClientURL, mongoUrl } from "./config/index.js";
 
 import authRouter from "./routes/auth.js";
 import adminRouter from "./routes/admin.js";
-import postRouter from "./routes/posts.js";
 import foodRouter from "./routes/food.js";
-import chartRouter from "./routes/chart.js";
+import cartRouter from "./routes/cart.js";
 import orderRouter from "./routes/order.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -56,9 +55,8 @@ async function init() {
 
   app.use("/auth/", authRouter);
   app.use("/admin/", adminRouter);
-  app.use("/post/", postRouter);
   app.use("/foods/", foodRouter);
-  app.use("/chart/", chartRouter);
+  app.use("/cart/", cartRouter);
   app.use("/orders/", orderRouter);
   app.use("/images", express.static(path.join(__dirname, "images")));
 }

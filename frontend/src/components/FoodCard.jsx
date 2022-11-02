@@ -4,6 +4,7 @@ import { IoAddCircleOutline } from "react-icons/io5";
 import { BsCheckCircle } from "react-icons/bs";
 
 export const FoodCard = ({ food, addToCart }) => {
+  // Initiation de la variable d'état du panier
   const cartState = useSelector((state) => state.cart.cart);
 
   return (

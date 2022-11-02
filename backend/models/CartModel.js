@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const ChartSchema = new mongoose.Schema({
+const CartSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
@@ -30,4 +30,4 @@ const ChartSchema = new mongoose.Schema({
   },
 });
 
-export const ChartModel = mongoose.model("Chart", ChartSchema);
+export const CartModel = mongoose.model("Cart", CartSchema);

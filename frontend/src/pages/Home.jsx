@@ -6,9 +6,10 @@ import { toast } from "react-toastify";
 import { FoodCardSkeleton } from "../components/FoodCartSkeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-const Home = ({ isLoading, foods }) => {
+export default function Home({ isLoading, foods }) {
   const dispatch = useDispatch();
 
+  // () => AJOUTER UN PRODUIT AU PANIER
   const addToCart = (id) => {
     cartRequest
       .addOne(id)
@@ -21,6 +22,7 @@ const Home = ({ isLoading, foods }) => {
       })
       .catch((err) => console.log(err));
   };
+
   return (
     <section id="home">
       <h2 className="menu-title page-container">Nos Burgers</h2>
@@ -35,6 +37,4 @@ const Home = ({ isLoading, foods }) => {
       </div>
     </section>
   );
-};
-
-export default Home;
+}

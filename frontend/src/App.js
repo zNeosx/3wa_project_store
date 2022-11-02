@@ -14,7 +14,7 @@ import Login from "./pages/Login";
 import PrivateRoutes from "./components/PrivateRoutes";
 import ClientLayout from "./components/ClientLayout";
 import Dashboard from "./pages/Dashboard";
-import AddFoodPage from "./pages/AddFoodPage";
+import AddFoodPage from "./pages/admin/AddFoodPage";
 import Food from "./pages/Food";
 import Cart from "./pages/Cart";
 import { SkeletonTheme } from "react-loading-skeleton";
@@ -24,7 +24,7 @@ import AdminLayout from "./components/AdminLayout";
 import AdminRoutes from "./components/AdminRoutes";
 import AdminUsers from "./pages/admin/AdminUsers";
 import AdminFoods from "./pages/admin/AdminFoods";
-import UpdatePostPage from "./pages/UpdatePostPage";
+import UpdatePostPage from "./pages/admin/UpdatePostPage";
 
 function App() {
   const [foods, setFoods] = useState([]);
