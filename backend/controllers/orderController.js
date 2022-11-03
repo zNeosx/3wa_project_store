@@ -33,7 +33,9 @@ export const orderController = {
     try {
       const orders = await OrderModel.find({
         userId: req.session.user._id,
-      }).populate("foods.food");
+      })
+        .populate("foods.food")
+        .sort({ createdAt: -1 });
       res.status(200).json(orders);
     } catch (error) {
       console.log(error);

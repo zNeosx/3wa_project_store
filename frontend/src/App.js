@@ -15,7 +15,6 @@ import PrivateRoutes from "./components/PrivateRoutes";
 import ClientLayout from "./components/ClientLayout";
 import Dashboard from "./pages/Dashboard";
 import AddFoodPage from "./pages/admin/AddFoodPage";
-import Food from "./pages/Food";
 import Cart from "./pages/Cart";
 import { SkeletonTheme } from "react-loading-skeleton";
 import Order from "./pages/Order";
@@ -34,6 +33,7 @@ function App() {
     <div className="App">
       <SkeletonTheme baseColor="#c2cfd6" highlightColor="#f0f3f5">
         <Routes>
+          {/* ==== PRIVATE ROUTES ==== */}
           <Route element={<PrivateRoutes />}>
             <Route
               path="/"
@@ -47,15 +47,17 @@ function App() {
               />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="add_food" element={<AddFoodPage />} />
-              <Route path="food" element={<Food />} />
               <Route path="cart" element={<Cart />} />
               <Route path="order" element={<Order />} />
             </Route>
           </Route>
+
+          {/* ==== PUBLIC ROUTES ==== */}
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/admin/login" element={<AdminLogin />} />
 
+          {/* ==== ADMIN ROUTES ==== */}
           <Route element={<AdminRoutes />}>
             <Route path="/admin/" element={<AdminLayout />}>
               <Route path="users" element={<AdminUsers />} />
