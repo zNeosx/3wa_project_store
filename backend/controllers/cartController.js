@@ -38,6 +38,7 @@ export const cartController = {
       const userCart = await CartModel.findOne({
         userId: req.session.user._id,
       });
+      // Pas de panier ? On en crée un
       if (!userCart) {
         const newCart = new CartModel({
           userId: req.session.user._id,
@@ -79,6 +80,7 @@ export const cartController = {
           .status(200)
           .json({ message: `${food.name} a bien été ajouté du panier`, cart });
       } else {
+        // Sinon on ajoute le produit au panier de l'utilisateur
         await CartModel.updateOne(
           {
             userId: req.session.user._id,
