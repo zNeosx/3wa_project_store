@@ -1,3 +1,7 @@
+# Projet de Formation
+
+Ce projet a été réalisé dans le cadre de la formation. La stack utilisé : React Js, Node Js, MongoDb. L'application a été développée en une semaine (la conception et le développement) comprenant une page d'acceuil (avec la liste des burgers, la gestion du panier, gestion des commandes), une page profile qui donne l'historique des commandes de l'utilisateur, une page admin qui gère le CRUD des burgers et commandes passées. 
+
 # Food Delivery App
 
 ## PACKAGES
