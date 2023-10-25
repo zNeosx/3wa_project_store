@@ -1,4 +1,4 @@
-export const port = process.env.APP_POST || 5000;
+export const port = process.env.APP_PORT || 5000;
 export const hostname = process.env.APP_HOSTNAME || "localhost";
 export const mongoUrl =
   process.env.APP_MONGODB_URL || "mongodb://localhost:27017";
